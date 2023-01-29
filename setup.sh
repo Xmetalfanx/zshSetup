@@ -1,6 +1,73 @@
 zshConfigDir="~/.config/zsh/"
 zshConfigFile="~/.zshrc"
+testDir="${pwd}/test/"
 
+# TODO: backup existing zshrc file if it exists 
+
+
+
+function addPlugin() {
+
+    # https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
+
+    
+    pluginName="${1}"
+
+    # from ohmhzsh
+
+    # wrong -   https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+    # correct - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+
+
+    [ "${repoName}" == "ohmyzsh" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${repoName}/master/plugins/${pluginName}/${pluginName}.plugin.zsh"
+    
+
+  
+    [ "${repoName}" == "zsh-user" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${pluginName}/master/${pluginName}.zsh"
+
+
+    echo -e "${pluginName}"
+    echo -e "${rawPlugin}"
+    curl -s ${rawPlugin} -o "${pluginName}.plugin.sh"
+    sleep 1 
+
+}
+
+function ohmyzshPlugins() { 
+    repoName="ohmyzsh"
+
+    # - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+
+
+
+    addPlugin "dirhistory"
+
+    # correct - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh
+
+
+    addPlugin "sudo"
+
+}
+
+function zshUserPlugins() {
+    ## [zsh-users](https://github.com/zsh-users)
+
+    # - zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
+        ## correct link - https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
+    # - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
+    # - zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+
+    repoName="zsh-users"
+
+    addPlugin "zsh-autosuggestions"
+    addPlugin "zsh-history-substring-search"
+    addPlugin "zsh-syntax-highlighting"
+
+}
+
+ohmyzshPlugins
+#zshUserPlugins
 
 function createHistoryLocation() {
     cacheDir="~/.cache/.zsh/"
