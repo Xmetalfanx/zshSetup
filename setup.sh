@@ -1,66 +1,81 @@
-zshConfigDir="~/.config/zsh/"
+zshConfigDir="~/.config/zsh"
 zshConfigFile="~/.zshrc"
-testDir="${pwd}/test/"
 
 # TODO: backup existing zshrc file if it exists 
 
 
 
-function addPlugin() {
-    
-    pluginName="${1}"
-
-    # from ohmhzsh repo 
-    [ "${repoName}" == "ohmyzsh" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${repoName}/master/plugins/${pluginName}/${pluginName}.plugin.zsh"
+function downloadPlugin() {
     
 
-    # from zsh-users repo 
-    [ "${repoName}" == "zsh-user" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${pluginName}/master/${pluginName}.zsh"
+    for currentPlugin in "${@}"
+    do 
+
+        echo -e "repoName:\t${repoName}"
+        # from ohmhzsh repo 
+        [ "${repoName}" == "ohmyzsh" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${repoName}/master/plugins/${currentPlugin}/${currentPlugin}.plugin.zsh"
+    
+
+        # from zsh-users repo 
+        [ "${repoName}" == "zsh-users" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${currentPlugin}/master/${currentPlugin}.zsh"
 
 
-    #echo -e "${pluginName}"
-    #echo -e "${rawPlugin}"
-    curl -s ${rawPlugin} -o "${pluginName}.plugin.sh"
-    sleep 1 
+        echo -e "${rawPlugin}"
+        
+        wget =s -P "assets/" "${rawPlugin}" 
+        sleep 1 
+
+
+    done 
 
 }
 
-function ohmyzshPlugins() { 
-    repoName="ohmyzsh"
+function setupPlugins() {
+    
+    #echo -e "Copying zsh plugins to config location"
+    #cp assets/config/zsh ~/.config/zsh/
 
+    echo -e "Setting up plugins in .zshrc file"
+    echo -e "#Include Plugins\t"
+
+    for currentPlugin in "${@}"
+    do 
+        #echo -e "source ${zshConfigDir}/${currentPlugin}/${currentPlugin}.plugin.zsh" >> ${zshConfigFile}
+        echo -e "source ${zshConfigDir}/${currentPlugin}/${currentPlugin}.plugin.zsh" 
+
+    done 
+
+
+}
+
+
+function ohmyzshPlugins() { 
     # - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
     # - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
+    repoName="ohmyzsh"
 
-
-    addPlugin "dirhistory"
-
-    # correct - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh
-
-
-    addPlugin "sudo"
-
+    downloadPlugin "dirhistory" "sudo"
 }
 
 function zshUserPlugins() {
     ## [zsh-users](https://github.com/zsh-users)
 
-    # - zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
-        ## correct link - https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
-    # - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
-    # - zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+    # Sources 
+    # zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
+    # zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
+    # zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
 
     repoName="zsh-users"
 
-    addPlugin "zsh-autosuggestions"
-    addPlugin "zsh-history-substring-search"
-    addPlugin "zsh-syntax-highlighting"
+    downloadPlugin "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
 
 }
 
 ohmyzshPlugins
 zshUserPlugins
 
+# Set up zsh history 
 function createHistoryLocation() {
     cacheDir="~/.cache/.zsh/"
     zshHistoryFile="${cacheDir}/history"
@@ -76,15 +91,10 @@ function createHistoryLocation() {
     
 }
 
-function setupPlugins() {
-    echo -e "Copying zsh plugins to config location"
-    cp assets/config/zsh ~/.config/zsh/
 
-    echo -e "Setting up plugins in .zshrc file"
-    echo "# Plugins\nsource ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\nsource ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh\nsource ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${zshConfigFile}
 
-}
 
+# Setip Prompt/Theme
 function setupPrompt() {
     
     # NOTE TO SELF: remember to use \" for the lines below when echoing out
@@ -93,6 +103,8 @@ function setupPrompt() {
     
 }
 
+#################################################
+# Alias related 
 function setupBasicAliases() {
 
     # general aliases adding color 
@@ -113,7 +125,6 @@ function setupBasicAliases() {
 
 }
 
-
 function setupGitAliases() { 
     # git aliases 
     alias gck="git checkout"
@@ -126,5 +137,4 @@ function setupGitAliases() {
 
     # i dont want to mess up git repos but could i combine aliases?
     # example ' gacm="gac && gcm" ' ... so then i'd type ' gacm "foobar message"    '
-
 }
