@@ -7,27 +7,19 @@ testDir="${pwd}/test/"
 
 
 function addPlugin() {
-
-    # https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh
-
     
     pluginName="${1}"
 
-    # from ohmhzsh
-
-    # wrong -   https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-    # correct - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-
-
+    # from ohmhzsh repo 
     [ "${repoName}" == "ohmyzsh" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${repoName}/master/plugins/${pluginName}/${pluginName}.plugin.zsh"
     
 
-  
+    # from zsh-users repo 
     [ "${repoName}" == "zsh-user" ] && rawPlugin="https://raw.githubusercontent.com/${repoName}/${pluginName}/master/${pluginName}.zsh"
 
 
-    echo -e "${pluginName}"
-    echo -e "${rawPlugin}"
+    #echo -e "${pluginName}"
+    #echo -e "${rawPlugin}"
     curl -s ${rawPlugin} -o "${pluginName}.plugin.sh"
     sleep 1 
 
@@ -67,7 +59,7 @@ function zshUserPlugins() {
 }
 
 ohmyzshPlugins
-#zshUserPlugins
+zshUserPlugins
 
 function createHistoryLocation() {
     cacheDir="~/.cache/.zsh/"
@@ -123,7 +115,7 @@ function setupBasicAliases() {
 
 
 function setupGitAliases() { 
-        # git aliases 
+    # git aliases 
     alias gck="git checkout"
     alias gc="git commit"
     # probably not needed
