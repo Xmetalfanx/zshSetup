@@ -21,7 +21,11 @@ function backupZSHRC() {
 }
 
 function clearZSHRC() {
-    return
+
+    backupZSHRC
+
+    echo -e "Clearing out existing zsh file "
+    > ${zshConfigFile}
 }
 
 # End of Genral Tasks
@@ -141,7 +145,7 @@ function createHistoryLocation() {
     [ ! -d "${cacheDir}" ] &&  mkdir "${cacheDir}" && [ ! -f "${zshHistoryFile}" ] && touch "${zshHistoryFile}"
 
     # History in cache directory:
-    echo -e "# History file\nHISTFILE=~/.cache/zsh/history" >> "${zshConfigFile}"
+    echo -e "\n# History file\nHISTFILE=~/.cache/zsh/history" >> "${zshConfigFile}"
 
 }
 
@@ -158,8 +162,7 @@ function setupPromptTheme() {
 # Alias related
 function setupBasicAliases() {
 
-    echo -en '
-# general aliases adding color
+    echo -en '# general aliases adding color
 alias ls="ls --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 
@@ -196,8 +199,7 @@ alias gac="git add . -- && clear"
 
 ## run functions
 intialTasks
-backupZSHRC
-#clearZSHRC
+clearZSHRC
 
 # Add Plugins 
 ohmyzshPlugins && zshUserPlugins && userPrompt
