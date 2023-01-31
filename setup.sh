@@ -56,15 +56,11 @@ function downloadZshusersPlugin() {
 
             git clone -q "${gitPluginURL}" "${localZshUsersDir}"
 
-            userPrompt
-
-            setupPlugins "${currentPlugin}"
-
             gitPluginURL=""
 
         done
 
-
+        setupPlugins "${@}"
 }
 
 function downloadOhMyZSHPlugin() {
@@ -84,8 +80,6 @@ function downloadOhMyZSHPlugin() {
         cp -r "${currentPluginLocalDir}" "${zshConfigDir}"
 
     done
-
-
 
     setupPlugins "${@}"
 }
@@ -107,6 +101,8 @@ function setupPlugins() {
 }
 
 function ohmyzshPlugins() {
+
+    # Repo: 
     # - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
     # - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
@@ -116,7 +112,7 @@ function ohmyzshPlugins() {
 }
 
 function zshUserPlugins() {
-    ## [zsh-users](https://github.com/zsh-users)
+    ## Repo: [zsh-users](https://github.com/zsh-users)
 
     # Sources
     # zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
@@ -139,7 +135,7 @@ function createHistoryLocation() {
     cacheDir="/home/${USER}/.cache/.zsh/"
     zshHistoryFile="${cacheDir}/history"
 
-    echo -e "Creating History file to use"
+    echo -e "Creating History file to use" && userPrompt
 
     # look for cache dir and create it if it doesn't exist, along with the history file and crate that if it doesn't exist
     [ ! -d "${cacheDir}" ] &&  mkdir "${cacheDir}" && [ ! -f "${zshHistoryFile}" ] && touch "${zshHistoryFile}"
@@ -149,12 +145,10 @@ function createHistoryLocation() {
 
 }
 
-
 # Setip Prompt/Theme
-function setupPrompt() {
+function setupPromptTheme() {
 
-    # NOTE TO SELF: remember to use \" for the lines below when echoing out
-    echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme"
+    echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme" && userPrompt
     echo -e "\n#Prompt UI\n#PROMPT=\"%K{#333333}%M@%B %F{yellow}%1~ #%f %b%k\"\nPROMPT=\"%K{#333333}%M@%B %F{green}%1~ #%f %b%k\"\n" >> "${zshConfigFile}"
 
 }
@@ -195,7 +189,6 @@ alias gbD="git branch -D"
 # "git add and clear"
 alias gac="git add . -- && clear"
 
-
 ' >> "${zshConfigFile}"
 }
 
@@ -206,10 +199,12 @@ intialTasks
 backupZSHRC
 #clearZSHRC
 
-ohmyzshPlugins
-zshUserPlugins
+# Add Plugins 
+ohmyzshPlugins && zshUserPlugins && userPrompt
 
-createHistoryLocation
-setupPrompt
-setupBasicAliases
-setupGitAliases
+
+createHistoryLocation && setupPromptTheme
+
+
+# Setup Aliases 
+echo  "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases
