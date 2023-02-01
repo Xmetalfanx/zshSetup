@@ -25,7 +25,7 @@ function clearZSHRC() {
     backupZSHRC
 
     echo -e "Clearing out existing zsh file "
-    > ${zshConfigFile}
+    cat /dev/null > "${zshConfigFile}"
 }
 
 # End of Genral Tasks
@@ -88,7 +88,6 @@ function downloadOhMyZSHPlugin() {
     setupPlugins "${@}"
 }
 
-
 # setup .zshrc file
 function setupPlugins() {
 
@@ -109,7 +108,7 @@ function ohmyzshPlugins() {
     # Repo: 
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
-    # common-aliaes: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+    # common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
     # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
     # history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
     # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
@@ -119,7 +118,7 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "history" "git" "sudo" "systemd" "yarn"
+    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliases" "dirhistory" "history" "git" "sudo" "systemd" "yarn"
 }
 
 function zshUserPlugins() {
@@ -158,6 +157,10 @@ function createHistoryLocation() {
 ###########################################################################################3
 # Theme Related 
 
+# help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used 
+# possible helpful resource: https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
+
+showGitBranch="\$(git symbolic-ref --short HEAD 2>/dev/null)"
 
 # PROMPT = PS1 ... SAME THING 
     # %n = name 
@@ -169,20 +172,31 @@ darkgrey="#333333"
 machineName="%M"
 currentDir="%1"
 
+function foregroundColorVars() {
+
+    yellow="%F{yellow}"
+    green="%F{green}"
+    white="%F{white}"
+    red="%F{#FF0000}"
+    
+}
+foregroundColorVars
+
+
 
 function bobTheFishStyleTheme() {
-    PROMPT="%K{${darkgrey}}${machineName}@%B %F{yellow}${currentDir}~ #%f %b%k"
-    #PROMPT="%K{${darkgrey}}%M@%B %F{green}${currentDir}~ #%f %b%k"
+    PROMPT="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ (${green}${showGitBranch}${yellow})>%f %b%k"
+    
+    #PROMPT="%K{${darkgrey}}%M@%B ${green}${currentDir}~ #%f %b%k"
 
 }
 
 function christmasPromptTheme() {
    
     # christmas
-    PROMPT="%K{#006400}%F{white}%M%f@ %B%F{#ff0000}%1~ #%f %b%k"
+    PROMPT="%K{#006400}${white}%M%f@ %B${red}%1~ #%f %b%k"
 
 }
-
 
 # Setip Prompt/Theme
 function setupPromptTheme() {
@@ -239,10 +253,11 @@ clearZSHRC
 
 # Add Plugins 
 ohmyzshPlugins
-#zshUserPlugins
+zshUserPlugins
 userPrompt
 
-createHistoryLocation && setupPromptTheme
+#createHistoryLocation && 
+setupPromptTheme
 
 
 # Setup Aliases 
