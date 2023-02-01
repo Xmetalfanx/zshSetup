@@ -114,11 +114,12 @@ function ohmyzshPlugins() {
     # history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
     # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+    # systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
     # yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "history" "git" "sudo" "yarn"
+    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "history" "git" "sudo" "systemd" "yarn"
 }
 
 function zshUserPlugins() {

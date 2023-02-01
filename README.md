@@ -24,6 +24,7 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 - History: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
 - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
   - lets you (anywhere in the command if i understand correctly) press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
+- systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
 - yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 
 ### [zsh-users](https://github.com/zsh-users)
