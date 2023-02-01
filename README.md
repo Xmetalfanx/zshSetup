@@ -16,6 +16,8 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
   - Allows you to use Alt+Arrow Keys to navigate between say the PWD and Parent or Child directories 
+- git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
+  - Git Aliases
 - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
   - lets you (anywhere in the command if i understand correctly) press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
 

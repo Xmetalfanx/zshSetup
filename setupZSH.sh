@@ -108,11 +108,12 @@ function ohmyzshPlugins() {
 
     # Repo: 
     # - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
     # - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "dirhistory" "sudo"
+    downloadOhMyZSHPlugin "dirhistory" "git" "sudo"
 }
 
 function zshUserPlugins() {
@@ -237,4 +238,4 @@ createHistoryLocation && setupPromptTheme
 
 
 # Setup Aliases 
-echo  "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases
+echo  "Setting up Aliases" && userPrompt && setupBasicAliases
