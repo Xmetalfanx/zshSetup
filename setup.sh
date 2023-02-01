@@ -148,12 +148,41 @@ function createHistoryLocation() {
     echo -e "\n# History file\nHISTFILE=~/.cache/zsh/history" >> "${zshConfigFile}"
 
 }
+###########################################################################################3
+# Theme Related 
+
+
+# PROMPT = PS1 ... SAME THING 
+    # %n = name 
+    # %M = name + machine
+    # %1= name of pwd (no path)
+    # %@ = time 
+
+darkgrey="#333333"
+machineName="%M"
+currentDir="%1"
+
+
+function bobTheFishStyleTheme() {
+    PROMPT="%K{${darkgrey}}${machineName}@%B %F{yellow}${currentDir}~ #%f %b%k"
+    #PROMPT="%K{${darkgrey}}%M@%B %F{green}${currentDir}~ #%f %b%k"
+
+}
+
+function christmasPromptTheme() {
+   
+    # christmas
+    PROMPT="%K{#006400}%F{white}%M%f@ %B%F{#ff0000}%1~ #%f %b%k"
+
+}
+
 
 # Setip Prompt/Theme
 function setupPromptTheme() {
+    bobTheFishStyleTheme
 
     echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme" && userPrompt
-    echo -e "\n#Prompt UI\n#PROMPT=\"%K{#333333}%M@%B %F{yellow}%1~ #%f %b%k\"\nPROMPT=\"%K{#333333}%M@%B %F{green}%1~ #%f %b%k\"\n" >> "${zshConfigFile}"
+    echo -e "\n#Prompt UI\nPROMPT=\"${PROMPT}\"\n" >> "${zshConfigFile}"
 
 }
 
@@ -202,8 +231,7 @@ intialTasks
 clearZSHRC
 
 # Add Plugins 
-ohmyzshPlugins && zshUserPlugins && userPrompt
-
+#ohmyzshPlugins && zshUserPlugins && userPrompt
 
 createHistoryLocation && setupPromptTheme
 
