@@ -111,12 +111,14 @@ function ohmyzshPlugins() {
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
     # common-aliaes: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
     # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
     # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+    # yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "git" "sudo"
+    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "history" "git" "sudo" "yarn"
 }
 
 function zshUserPlugins() {

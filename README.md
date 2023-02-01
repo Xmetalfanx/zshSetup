@@ -15,13 +15,16 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 ### [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 - Colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+- colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
 - Common-Aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
 - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
   - Allows you to use Alt+Arrow Keys to navigate between say the PWD and Parent or Child directories 
 - git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
   - Git Aliases
+- History: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
 - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
   - lets you (anywhere in the command if i understand correctly) press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
+- yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 
 ### [zsh-users](https://github.com/zsh-users)
 
