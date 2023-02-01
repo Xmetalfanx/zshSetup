@@ -107,7 +107,7 @@ function setupPlugins() {
 function ohmyzshPlugins() {
 
     # Repo: 
-    # colored-man-pages: 
+    # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
     # common-aliaes: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
     # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
@@ -116,7 +116,7 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "common-aliaes" "dirhistory" "git" "sudo"
+    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliaes" "dirhistory" "git" "sudo"
 }
 
 function zshUserPlugins() {
