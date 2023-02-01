@@ -143,7 +143,7 @@ function zshUserPlugins() {
 
 # Set up zsh history file in cache location
 function createHistoryLocation() {
-    cacheDir="/home/${USER}/.cache/.zsh/"
+    cacheDir="/home/${USER}/.cache/zsh/"
     zshHistoryFile="${cacheDir}/history"
 
     echo -e "Creating History file to use" && userPrompt
