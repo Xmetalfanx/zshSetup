@@ -107,13 +107,16 @@ function setupPlugins() {
 function ohmyzshPlugins() {
 
     # Repo: 
-    # - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # colored-man-pages: 
+    # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+    # common-aliaes: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+    # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
     # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
-    # - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+    # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "dirhistory" "git" "sudo"
+    downloadOhMyZSHPlugin "colorize" "common-aliaes" "dirhistory" "git" "sudo"
 }
 
 function zshUserPlugins() {
@@ -232,7 +235,9 @@ intialTasks
 clearZSHRC
 
 # Add Plugins 
-#ohmyzshPlugins && zshUserPlugins && userPrompt
+ohmyzshPlugins
+#zshUserPlugins
+userPrompt
 
 createHistoryLocation && setupPromptTheme
 

@@ -14,6 +14,8 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 ### [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
+- Colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+- Common-Aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
 - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
   - Allows you to use Alt+Arrow Keys to navigate between say the PWD and Parent or Child directories 
 - git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
