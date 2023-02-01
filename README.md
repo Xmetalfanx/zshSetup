@@ -35,3 +35,11 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 ## Theming
 - The only theme code I have now is based on (the overall look, maybe not default color scheme) [BobTheFish](https://github.com/oh-my-fish/theme-bobthefish) used in the [Fish Shell](https://fishshell.com/)/[Fish on Github](https://github.com/fish-shell/fish-shell) from [OhMyFish](https://github.com/oh-my-fish/oh-my-fish)
+
+## Projects
+
+Projects I either use parts of in this script/find interesting and may use/are just similiar (setting up zsh) somehow 
+
+- [fancy-git](https://github.com/diogocavilha/fancy-git)
+- [OhMyZsh](https://github.com/ohmyzsh/ohmyzsh)
+- [zsh-users](https://github.com/zsh-users)
