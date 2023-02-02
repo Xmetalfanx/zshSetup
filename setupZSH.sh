@@ -72,7 +72,7 @@ function downloadOhMyZSHPlugin() {
     ohmyzshRepo="https://github.com/ohmyzsh/ohmyzsh.git"
     localOhMyZshDir="assets/ohmyzsh"
 
-    [ ! -d ${localOhMyZshDir} ] && git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
+    [ ! -d "${localOhMyZshDir}" ] && git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
 
     ohmyzshPluginsDir="${localOhMyZshDir}/plugins/"
 
@@ -160,17 +160,22 @@ function createHistoryLocation() {
 # help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used 
 # possible helpful resource: https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
 
-showGitBranch="\$(git symbolic-ref --short HEAD 2>/dev/null)"
 
-# PROMPT = PS1 ... SAME THING 
+
+function themeVars() {
+
+    showGitBranch="(\$(git symbolic-ref --short HEAD 2>/dev/null))"
+
+    # PROMPT = PS1 ... SAME THING 
     # %n = name 
     # %M = name + machine
     # %1= name of pwd (no path)
     # %@ = time 
 
-darkgrey="#333333"
-machineName="%M"
-currentDir="%1"
+    darkgrey="#333333"
+    machineName="%M"
+    currentDir="%1"
+}
 
 function foregroundColorVars() {
 
@@ -183,10 +188,35 @@ function foregroundColorVars() {
 foregroundColorVars
 
 
+function assembleTheme() {
+    theme="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ ${green}${showGitBranch}${yellow}>%f %b%k"
+
+    echo -e "${theme}"
+}
+
 
 function bobTheFishStyleTheme() {
-    PROMPT="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ (${green}${showGitBranch}${yellow})>%f %b%k"
+    machineBGColor=${darkgrey}
+    machineSection="${machineBGColor}}${machineName}@%B"
+
+    pwdFGColor=${yellow}
+    pwdSection="${pwdFGColor}${currentDir}~"
+
+    gitBranchFGColor=${green}
+    gitSection="${gitBranchFGColor}${showGitBranch}${pwdFGColor}"
+
+    PROMPT="%K{${machineSection} ${pwdSection} ${gitSection}>%f %b%k"
+
     
+    
+    PROMPT2="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ ${green}${showGitBranch}${yellow}>%f %b%k"
+    
+    echo "$PROMPT"
+    echo "${PROMPT2}"
+    userPrompt
+    exit
+
+    # second original theme 
     #PROMPT="%K{${darkgrey}}%M@%B ${green}${currentDir}~ #%f %b%k"
 
 }
@@ -204,7 +234,6 @@ function setupPromptTheme() {
 
     echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme" && userPrompt
     echo -e "\n#Prompt UI\nPROMPT=\"${PROMPT}\"\n" >> "${zshConfigFile}"
-
 }
 
 
@@ -230,6 +259,7 @@ alias ytda="yt-dlp -x --audio-format mp3 --audio-quality 192kb "
 ' >> "${zshConfigFile}"
 }
 
+# not needed with plugin 
 function setupGitAliases() {
 
    echo -en '
@@ -252,13 +282,13 @@ intialTasks
 clearZSHRC
 
 # Add Plugins 
-ohmyzshPlugins
-zshUserPlugins
-userPrompt
+#ohmyzshPlugins
+#zshUserPlugins
+# userPrompt
 
-#createHistoryLocation && 
+#createHistoryLocation
 setupPromptTheme
 
 
 # Setup Aliases 
-echo  "Setting up Aliases" && userPrompt && setupBasicAliases
+#echo  "Setting up Aliases" && userPrompt && setupBasicAliases
