@@ -30,17 +30,21 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 ### [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 - Colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+  - allows you to type "ccat <file>" to show a file in cat but with syntax coloring 
 - colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
-- Common-Aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+  - shows man pages with colored syntax highlighting 
 - DirHistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
   - Allows you to use Alt+Arrow Keys to navigate between say the PWD and Parent or Child directories 
-- git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
-  - Git Aliases
-- History: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
+  - issue: I find this doesn't work in the terminal "inside of" vscode 
 - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
-  - lets you (anywhere in the command if i understand correctly) press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
-- systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
-- yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
+  - lets you  press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
+- Alias Related Plugins
+  - common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+  - git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
+  - history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
+  - systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
+  - yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
+
 
 ### [zsh-users](https://github.com/zsh-users)
 
