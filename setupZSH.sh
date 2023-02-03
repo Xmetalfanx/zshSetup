@@ -150,7 +150,7 @@ function createHistoryLocation() {
     [ ! -d "${cacheDir}" ] &&  mkdir "${cacheDir}" && [ ! -f "${zshHistoryFile}" ] && touch "${zshHistoryFile}"
 
     # History in cache directory:
-    echo -e "\n# History file\nHISTFILE=~/.cache/zsh/history" >> "${zshConfigFile}"
+    echo -e "\n# History file\nHISTFILE=/home/${USER}/.cache/zsh/history\nHISTSIZE=500\nSAVEHIST=500\nsetopt appendhistory" >> "${zshConfigFile}"
 
 }
 ###########################################################################################3
@@ -282,20 +282,35 @@ alias gac="git add . -- && clear"
 ' >> "${zshConfigFile}"
 }
 
-
-
+#################################################################################
 ## run functions
 intialTasks
 clearZSHRC
 
-# Add Plugins
-ohmyzshPlugins
-zshUserPlugins
-userPrompt
 
-createHistoryLocation
-setupPromptTheme
+function selectSetupType() {
 
+    echo -e "\vDo you want the Slim setup or the Complete setup?"
+    read -p "(S/C)" setupTypeSelection 
 
-# Setup Aliases
-echo  "Setting up Aliases" && userPrompt && setupBasicAliases
+    case $setupTypeSelection in 
+
+        [sS])   clear
+                createHistoryLocation
+                setupPromptTheme
+                echo "Setting up Aliases" && userPrompt && setupBasicAliases ;;
+        
+        
+        [cC])   clear
+                ohmyzshPlugins
+                zshUserPlugins && userPrompt
+                createHistoryLocation
+                setupPromptTheme
+                
+                echo  "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases ;; 
+
+    esac 
+
+}
+
+selectSetupType
