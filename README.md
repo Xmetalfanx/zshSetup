@@ -43,3 +43,4 @@ Projects I either use parts of in this script/find interesting and may use/are j
 - [fancy-git](https://github.com/diogocavilha/fancy-git)
 - [OhMyZsh](https://github.com/ohmyzsh/ohmyzsh)
 - [zsh-users](https://github.com/zsh-users)
+- [zsh-git-prompt](https://github.com/zsh-git-prompt/zsh-git-prompt)
