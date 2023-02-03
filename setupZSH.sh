@@ -5,8 +5,7 @@ clear
 # General Tasks
 
 
-function intialTasks
-{
+function intialTasks {
     # Basic Variables
     zshConfigDir="/home/${USER}/.config/zsh"
     zshConfigFile="/home/${USER}/.zshrc"
@@ -34,7 +33,7 @@ function clearZSHRC() {
 ################################################################################
 # Plugin Related Code
 
-#sort of used in debugging so i can pause the screen 
+#sort of used in debugging so i can pause the screen
 function userPrompt() {
     read -p "Press Any Key to continue"
 }
@@ -105,7 +104,7 @@ function setupPlugins() {
 
 function ohmyzshPlugins() {
 
-    # Repo: 
+    # Repo:
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
     # common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
@@ -155,9 +154,9 @@ function createHistoryLocation() {
 
 }
 ###########################################################################################3
-# Theme Related 
+# Theme Related
 
-# help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used 
+# help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used
 # possible helpful resource: https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
 
 
@@ -166,63 +165,67 @@ function themeVars() {
 
     showGitBranch="(\$(git symbolic-ref --short HEAD 2>/dev/null))"
 
-    # PROMPT = PS1 ... SAME THING 
-    # %n = name 
+    # PROMPT = PS1 ... SAME THING
+    # %n = name
     # %M = name + machine
     # %1= name of pwd (no path)
-    # %@ = time 
+    # %@ = time
 
     darkgrey="#333333"
     machineName="%M"
     currentDir="%1"
-}
-
-function foregroundColorVars() {
 
     yellow="%F{yellow}"
     green="%F{green}"
     white="%F{white}"
     red="%F{#FF0000}"
-    
-}
-foregroundColorVars
-
-
-function assembleTheme() {
-    theme="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ ${green}${showGitBranch}${yellow}>%f %b%k"
-
-    echo -e "${theme}"
+    blue="%F{#0000FF}"
+    green="%F{#006400}"
 }
 
+themeVars
 
-function bobTheFishStyleTheme() {
-    machineBGColor=${darkgrey}
+# function to pass custom themes to 
+function assembleBobTheFishTheme() {
+    # sections assembled
     machineSection="${machineBGColor}}${machineName}@%B"
-
-    pwdFGColor=${yellow}
     pwdSection="${pwdFGColor}${currentDir}~"
-
-    gitBranchFGColor=${green}
     gitSection="${gitBranchFGColor}${showGitBranch}${pwdFGColor}"
 
     PROMPT="%K{${machineSection} ${pwdSection} ${gitSection}>%f %b%k"
 
-    
-    
-    PROMPT2="%K{${darkgrey}}${machineName}@%B ${yellow}${currentDir}~ ${green}${showGitBranch}${yellow}>%f %b%k"
-    
-    echo "$PROMPT"
-    echo "${PROMPT2}"
-    userPrompt
-    exit
-
-    # second original theme 
-    #PROMPT="%K{${darkgrey}}%M@%B ${green}${currentDir}~ #%f %b%k"
-
+    #echo -e "${theme}"
 }
 
+
+function BobTheFishInspired2() {
+
+    # section colors
+    machineBGColor=${darkgrey}
+    pwdFGColor=${green}
+    gitBranchFGColor=${white}
+}
+
+
+function BobTheFishInspired1() {
+   # section colors
+    machineBGColor=${darkgrey}
+    pwdFGColor=${yellow}
+    gitBranchFGColor=${green}
+}
+
+# Blue and red try 
+function BobTheFishInspiredBlueRed() {
+       # section colors
+    machineBGColor=${darkgrey}
+    pwdFGColor=${blue}
+    gitBranchFGColor=${red}
+}
+
+
+
 function christmasPromptTheme() {
-   
+    # this theme seems different so i may have to use a custom template for it 
     # christmas
     PROMPT="%K{#006400}${white}%M%f@ %B${red}%1~ #%f %b%k"
 
@@ -230,7 +233,11 @@ function christmasPromptTheme() {
 
 # Setip Prompt/Theme
 function setupPromptTheme() {
-    bobTheFishStyleTheme
+    # theme to use
+    BobTheFishInspiredBlueRed
+
+    # generate theme
+    assembleBobTheFishTheme
 
     echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme" && userPrompt
     echo -e "\n#Prompt UI\nPROMPT=\"${PROMPT}\"\n" >> "${zshConfigFile}"
@@ -259,7 +266,7 @@ alias ytda="yt-dlp -x --audio-format mp3 --audio-quality 192kb "
 ' >> "${zshConfigFile}"
 }
 
-# not needed with plugin 
+# not needed with plugin
 function setupGitAliases() {
 
    echo -en '
@@ -281,14 +288,14 @@ alias gac="git add . -- && clear"
 intialTasks
 clearZSHRC
 
-# Add Plugins 
-#ohmyzshPlugins
-#zshUserPlugins
-# userPrompt
+# Add Plugins
+ohmyzshPlugins
+zshUserPlugins
+userPrompt
 
-#createHistoryLocation
+createHistoryLocation
 setupPromptTheme
 
 
-# Setup Aliases 
-#echo  "Setting up Aliases" && userPrompt && setupBasicAliases
+# Setup Aliases
+echo  "Setting up Aliases" && userPrompt && setupBasicAliases
