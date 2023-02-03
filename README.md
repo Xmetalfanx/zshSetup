@@ -6,6 +6,21 @@ While I may in fact do the same thing I did with my [Linux Setup Scripts](https:
 
 Menus and "Do you want to install A or B?" type things may come later but this is just a fast set of tasks I have tossed together for now .. again like the origins of my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).
 
+
+## Slim vs Complete option 
+- Complete 
+    - Installs plugins sourced from zsh-users and ohMyZsh repos that I find at least possibly useful
+    - Sets up history file in ~/.cache/zsh/history
+    - Sets up Prompt "theme" based on BobTheFish Fish theme
+    - Sets up basic Aliases
+
+- Slim 
+  - Sets up history file in ~/.cache/zsh/history
+  - Sets up Prompt "theme" based on BobTheFish Fish theme
+  - Sets up basic Aliases
+  - Sets up Git Aliases (since the plugins are not used here and one of them has mostly the same stuff, i do not have this on the Complete option )
+
+
 ## Credits
 
 The harcoded plugins I include belong to their projects and developers .. I am not even sure i am keeping these hard-coded in... ALL CREDIT for their code goes to them 
