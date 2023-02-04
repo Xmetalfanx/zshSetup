@@ -24,7 +24,7 @@ function selectSetupType() {
         [sS])   clear
                 createHistoryLocation
                 setupPromptTheme
-                echo "Setting up Aliases" && userPrompt && setupBasicAliases ;;
+                echo "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases ;;
         
         
         [cC])   clear
@@ -33,7 +33,7 @@ function selectSetupType() {
                 createHistoryLocation
                 setupPromptTheme
                 
-                echo  "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases ;; 
+                echo  "Setting up Aliases" && userPrompt && setupBasicAliases ;; 
 
     esac 
 
