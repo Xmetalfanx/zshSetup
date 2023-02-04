@@ -3,12 +3,6 @@
 ################################################################################
 # Plugin Related Code
 
-#sort of used in debugging so i can pause the screen
-function userPrompt() {
-    read -p "Press Any Key to continue"
-}
-
-
 function downloadZshusersPlugin() {
     pluginName=${1}
 
@@ -72,13 +66,23 @@ function setupPlugins() {
 
 }
 
-function ohmyzshPlugins() {
 
+# Plugins that may not work on all distros by default anyway
+function ohmyzshPlugins2() { 
     # Repo:
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+
+    # colorize doesn't always work on non-Ubuntu distros (* by default) in my tests and I cant get colored-man-pages to work even though i DID see it working once before I started these scripts 
+
+    repoName="ohmyzsh"
+
+    downloadOhMyZSHPlugin "colorize" "colored-man-pages"
+}
+
+function ohmyzshPlugins_aliases() { 
+    # Repo:
     # common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-    # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
     # history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
     # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
@@ -87,7 +91,20 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "colored-man-pages" "common-aliases" "dirhistory" "history" "git" "sudo" "systemd" "yarn"
+    downloadOhMyZSHPlugin "common-aliases" "history" "git" "sudo" "systemd" "yarn"
+}
+
+# The "Default" OMZ plugin function 
+function ohmyzshPlugins() {
+    # Alias plugins 
+    ohmyzshPlugins_aliases
+
+    # Repo:
+    # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+
+    repoName="ohmyzsh"
+
+    downloadOhMyZSHPlugin "dirhistory"
 }
 
 function zshUserPlugins() {

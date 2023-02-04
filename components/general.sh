@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#sort of used in debugging so i can pause the screen
+function userPrompt() {
+    read -p "Press Any Key to continue"
+}
+
 function intialTasks {
     # Basic Variables
     zshConfigDir="/home/${USER}/.config/zsh"
