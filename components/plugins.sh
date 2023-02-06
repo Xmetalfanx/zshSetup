@@ -31,15 +31,45 @@ function downloadZshusersPlugin() {
         setupPlugins "${@}"
 }
 
+function omzSettings() {
+    # for counter 
+    [ ! -d "settings" ] && echo "Creating settings Directory" && mkdir "settings"
+
+    # create settings file or reading settings file depending on if it exists 
+    if [ ! -f "${settingsFile}" ]; then
+        echo "Creating settings file" && touch "${settingsFile}"
+    elif [ -f "${settingsFile}" ]; then
+        echo "Reading Settings file" && . "${settingsFile}"
+    fi 
+
+}
+
 # download plugins from the ohmyzsh repo 
 function downloadOhMyZSHPlugin() {
     # here "repoName" is set already
     ohmyzshRepo="https://github.com/ohmyzsh/ohmyzsh.git"
+    # where to put downloaded omz plugin
     localOhMyZshDir="assets/ohmyzsh"
-
-    [ ! -d "${localOhMyZshDir}" ] && git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
-
+    settingsFile="settings/settings.cfg"
     ohmyzshPluginsDir="${localOhMyZshDir}/plugins/"
+
+    omzSettings
+
+    # if the counter is greater than or equal to 5, remove the cached omz folder (and eventually dl it again)
+    [[ ${zshCounter} -gt 4 ]] && rm -rf "${localOhMyZshDir}"
+
+
+    if [[ ! -d "${localOhMyZshDir}" || "${zshCounter}" -gt 4 ]]; then
+        # download OMZ and increase the counter
+        echo "Downloading OhMyZsh Repo"
+        git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
+        zshCounter=1
+    elif [ -d "${localOhMyZshDir}" ]; then 
+        ((zshCounter++))
+    fi
+    
+    echo "zshCounter=${zshCounter}" > ${settingsFile}
+
 
     for currentPlugin in "${@}"
     do
@@ -71,7 +101,7 @@ function setupPlugins() {
 ############################################################################
 
 # Plugins that may not work on all distros by default anyway
-function ohmyzshPlugins2() { 
+function ohmyzshPlugins_havingIssues() { 
     # Repo:
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
@@ -83,29 +113,16 @@ function ohmyzshPlugins2() {
     downloadOhMyZSHPlugin "colorize" "colored-man-pages"
 }
 
-function ohmyzshPlugins_aliases() { 
-    # Repo:
-    # common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-    # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
-    # systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
-    # yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
-
-    repoName="ohmyzsh"
-
-    downloadOhMyZSHPlugin "common-aliases" "sudo" "systemd" "yarn"
-}
 
 # The "Default" OMZ plugin function 
 function ohmyzshPlugins() {
-    # Alias plugins 
-    ohmyzshPlugins_aliases
-
     # Repo:
     # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "dirhistory"
+    downloadOhMyZSHPlugin "dirhistory" "sudo"
 }
 
 function zshUserPlugins() {
