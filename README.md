@@ -38,7 +38,7 @@ Menus and "Do you want to install A or B?" type things may come later but this i
 
 | Before/Vanilla zsh                                   | After running (Complete option) Scripts               |
 |------------------------------------------------------|-------------------------------------------------------|
-| ![Before/Vanilla zsh](assets/screenshots/before.png) | ![After running script](assets/screenshots/after.png) |
+| ![Before/Vanilla zsh](assets/screenshots/before.jpg) | ![After running script](assets/screenshots/after.jpg) |
 
 
 ## Credits
