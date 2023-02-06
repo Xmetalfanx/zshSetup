@@ -1,11 +1,22 @@
 # zshSetup
 
+- [zshSetup](#zshsetup)
+  - [Goal](#goal)
+  - [Slim vs Complete option](#slim-vs-complete-option)
+  - [Screenshots](#screenshots)
+  - [Credits](#credits)
+  - [Plugins](#plugins)
+    - [Oh-my-zsh](#oh-my-zsh)
+    - [zsh-users](#zsh-users)
+  - [Theming](#theming)
+  - [Projects](#projects)
+
+
 ## Goal
 
 While I may in fact do the same thing I did with my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).  The goal for right now is similiar to the origins of that project.  A way to setup zsh (Linux in the other case) fast on a fresh setup.
 
 Menus and "Do you want to install A or B?" type things may come later but this is just a fast set of tasks I have tossed together for now .. again like the origins of my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).
-
 
 ## Slim vs Complete option 
 - Complete 
@@ -25,6 +36,12 @@ Menus and "Do you want to install A or B?" type things may come later but this i
   - Sets up basic Aliases
   - Sets up Git Aliases (since the plugins are not used here and one of them has mostly the same stuff, i do not have this on the Complete option )
 
+
+## Screenshots 
+
+![Before/Vanilla zsh](assets/screenshots/before.png)
+
+![After running script](assets/screenshots/after.png)
 
 ## Credits
 
