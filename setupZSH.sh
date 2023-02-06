@@ -2,11 +2,10 @@
 clear
 
 # import needed functions 
-source components/general.sh
 source components/plugins.sh
-source components/theming.sh
 source components/aliases.sh
-
+source components/general.sh
+source components/theming.sh
 
 #################################################################################
 
@@ -16,27 +15,26 @@ clearZSHRC
 
 function selectSetupType() {
 
-    echo -e "\vDo you want the Slim setup or the Complete setup?"
-    read -p "(S/C)" setupTypeSelection 
+    echo -e "\vDo you want the Slim, Medium or Complete setup?"
+    read -p "(S/M/C)" setupTypeSelection
 
     case $setupTypeSelection in 
 
-        [sS])   clear
-                createHistoryLocation
-                setupPromptTheme
-                echo "Setting up Aliases" && userPrompt && setupBasicAliases && setupGitAliases ;;
-        
-        
         [cC])   clear
-                ohmyzshPlugins
-                zshUserPlugins && userPrompt
-                createHistoryLocation
+                ohmyzshPlugins && zshUserPlugins && userPrompt
+                setupPromptTheme 
+                metaAliasAndOthers 
+                ;; 
+        
+        [mM])   clear
                 setupPromptTheme
-                
-                echo  "Setting up Aliases" && userPrompt && setupBasicAliases ;; 
+                metaAliasAndOthers 
+                ;; 
 
+        [sS])   clear              
+                metaAliasAndOthers 
+                ;;
     esac 
-
 }
 
 selectSetupType

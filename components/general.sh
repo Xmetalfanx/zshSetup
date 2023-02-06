@@ -49,3 +49,8 @@ function createHistoryLocation() {
 
 }
 
+# for setting up non theme and non history related additions 
+function metaAliasAndOthers() {
+    createHistoryLocation
+    metaAliasSetup
+}

@@ -3,6 +3,7 @@
 ################################################################################
 # Plugin Related Code
 
+# download plugins from the zsh-users repo
 function downloadZshusersPlugin() {
     pluginName=${1}
 
@@ -30,6 +31,7 @@ function downloadZshusersPlugin() {
         setupPlugins "${@}"
 }
 
+# download plugins from the ohmyzsh repo 
 function downloadOhMyZSHPlugin() {
     # here "repoName" is set already
     ohmyzshRepo="https://github.com/ohmyzsh/ohmyzsh.git"
@@ -51,7 +53,7 @@ function downloadOhMyZSHPlugin() {
     setupPlugins "${@}"
 }
 
-# setup .zshrc file
+# setup .zshrc file with the downloaded plugins 
 function setupPlugins() {
 
     echo -e "Setting up plugins in .zshrc file"
@@ -66,6 +68,7 @@ function setupPlugins() {
 
 }
 
+############################################################################
 
 # Plugins that may not work on all distros by default anyway
 function ohmyzshPlugins2() { 
@@ -83,15 +86,13 @@ function ohmyzshPlugins2() {
 function ohmyzshPlugins_aliases() { 
     # Repo:
     # common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-    # history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
-    # git - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
     # systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
     # yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "common-aliases" "history" "git" "sudo" "systemd" "yarn"
+    downloadOhMyZSHPlugin "common-aliases" "sudo" "systemd" "yarn"
 }
 
 # The "Default" OMZ plugin function 

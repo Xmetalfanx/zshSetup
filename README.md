@@ -9,10 +9,15 @@ Menus and "Do you want to install A or B?" type things may come later but this i
 
 ## Slim vs Complete option 
 - Complete 
-    - Installs plugins sourced from zsh-users and ohMyZsh repos that I find at least possibly useful
-    - Sets up history file in ~/.cache/zsh/history
-    - Sets up Prompt "theme" based on BobTheFish Fish theme
-    - Sets up basic Aliases
+  - Installs plugins sourced from zsh-users and ohMyZsh repos that I find at least possibly useful
+  - Sets up history file in ~/.cache/zsh/history
+  - Sets up Prompt "theme" based on BobTheFish Fish theme
+  - Sets up basic Aliases
+
+- Medium 
+  - Sets up history file in ~/.cache/zsh/history
+  - Sets up Prompt "theme" based on BobTheFish Fish theme
+  - Sets up basic Aliases
 
 - Slim 
   - Sets up history file in ~/.cache/zsh/history
@@ -38,13 +43,6 @@ The harcoded plugins I include belong to their projects and developers .. I am n
   - issue: I find this doesn't work in the terminal "inside of" vscode 
 - sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
   - lets you  press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
-- Alias Related Plugins
-  - common-aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-  - git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git 
-  - history: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
-  - systemd: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
-  - yarn: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
-
 
 ### [zsh-users](https://github.com/zsh-users)
 
