@@ -30,6 +30,15 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 
+# from ohmyzsh
+alias p="ps -f"
+alias zshrc="${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc" # Quick access to the .zshrc file
+alias dud="du -d 1 -h"
+(( $+commands[duf] )) || alias duf="du -sh *"
+(( $+commands[fd] )) || alias fd="find . -type d -name"
+alias ff="find . -type f -name"
+
+
 ' >> "${zshConfigFile}"
 }
 
@@ -68,7 +77,7 @@ alias ytda="yt-dlp -x --audio-format mp3 --audio-quality 192kb "
 
 
 function setupGitAliases() {
-    checkCommand "git"    
+    checkCommand "git"
     echo "Setting up git related aliases"
 
 echo -en '# git aliases
