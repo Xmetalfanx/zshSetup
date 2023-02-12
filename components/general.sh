@@ -5,6 +5,39 @@ function userPrompt() {
     read -p "Press Any Key to continue"
 }
 
+# ROUGH idea to keep it simple
+function detectDistro(){
+
+    osReleaseName=$(awk -F\" '/^NAME/ { print $2}' /etc/os-release)
+
+
+    if [ $(command -v apt) ]; then
+        
+        # ubuntu vs debian
+        case ${osReleaseName} in 
+            "Debian GNU/Linux") distroBase="debian" ;;
+            Ubuntu) distroBase="ubuntu" ;;
+        esac 
+
+
+    elif [ $(command -v dnf) ]; then
+        distroBase="fedora"
+    elif [[ $(command -v eopkg) || osReleaseName == "Solus" ]]; then
+        distroBase="solus"
+    elif [ $(command -v pacman) ]; then
+        distroBase="arch"
+    elif [ $(command -v zypper) ]; then
+        distroBase="opensuse"
+    else
+        echo "error detecting distro base"
+        userPrompt
+    fi
+
+    # debugging only 
+    # echo -e "Detected distroBase is:\t${distroBase}"
+    # userPrompt
+}
+
 function intialTasks {
     # Basic Variables
     zshConfigDir="/home/${USER}/.config/zsh"
@@ -12,6 +45,8 @@ function intialTasks {
 
     # create a .zshrc file if one doesn't exist already
     [ ! -f "${zshConfigFile}" ] && touch "${zshConfigFile}"
+
+    detectDistro
 }
 
 function backupZSHRC() {
@@ -49,7 +84,7 @@ function createHistoryLocation() {
 
 }
 
-# for setting up non theme and non history related additions 
+# for setting up non theme and non history related additions
 function metaAliasAndOthers() {
     createHistoryLocation
     metaAliasSetup

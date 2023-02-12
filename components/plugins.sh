@@ -101,7 +101,8 @@ function setupPlugins() {
 ############################################################################
 
 # Plugins that may not work on all distros by default anyway
-function ohmyzshPlugins_havingIssues() { 
+# this will probably be renamed later 
+function ohmyzshPlugins_distroSpecific() { 
     # Repo:
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
     # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
@@ -110,7 +111,9 @@ function ohmyzshPlugins_havingIssues() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "colored-man-pages"
+    #downloadOhMyZSHPlugin "colorize" "colored-man-pages"
+
+    [ "${distroBase}" == "ubuntu" ] && downloadOhMyZSHPlugin "colorize"
 }
 
 
@@ -123,6 +126,8 @@ function ohmyzshPlugins() {
     repoName="ohmyzsh"
 
     downloadOhMyZSHPlugin "dirhistory" "sudo"
+
+    ohmyzshPlugins_distroSpecific
 }
 
 function zshUserPlugins() {
@@ -136,7 +141,9 @@ function zshUserPlugins() {
 
     repoName="zsh-users"
 
-    downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
+   #downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
+    downloadZshusersPlugin "zsh-completions" "zsh-history-substring-search"
+
 }
 
 # End of Plugin related code
