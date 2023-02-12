@@ -129,13 +129,14 @@ function zshUserPlugins() {
     ## Repo: [zsh-users](https://github.com/zsh-users)
 
     # Sources
+    # zsh-completions: https://github.com/zsh-users/zsh-completions
     # zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
     # zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
     # zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
 
     repoName="zsh-users"
 
-    downloadZshusersPlugin "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
+    downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
 }
 
 # End of Plugin related code

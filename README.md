@@ -67,6 +67,7 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 ### [zsh-users](https://github.com/zsh-users)
 
+- zsh-completions: https://github.com/zsh-users/zsh-completions
 - zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
 - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
 - zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
