@@ -15,14 +15,26 @@ clearZSHRC
 
 function selectSetupType() {
 
-    echo -e "\vDo you want the Slim, Medium or Complete setup?"
-    read -p "(S/M/C)" setupTypeSelection
+        echo -e "Brief Description
+        Complete - Adds OhmyZsh and zsh-user plugins manually, theming, tweaks and aliases
+        NonTheme Complete (NT) - SAME as complete, expect NO THEMING
+        Medium - Adds theming, tweaks and aliases
+        Slim - Adds tweaks and aliases
+
+\vDo you want the Slim, Medium or Complete setup?
+        "
+        read -p "(s/m/nt/c)" setupTypeSelection
 
     case $setupTypeSelection in
 
         [cC])   clear
                 ohmyzshPlugins && zshUserPlugins && userPrompt
                 setupPromptTheme
+                metaAliasAndOthers
+                ;;
+
+        "nt"|"NT")  clear
+                ohmyzshPlugins && zshUserPlugins && userPrompt
                 metaAliasAndOthers
                 ;;
 
@@ -35,7 +47,8 @@ function selectSetupType() {
                 metaAliasAndOthers
                 ;;
 
-        [tT]) ohmyzshPlugins_havingIssues ;;
+        *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
+
     esac
 }
 
