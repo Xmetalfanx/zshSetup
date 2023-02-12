@@ -1,7 +1,5 @@
 #!/bin/bash
 
-################################################################################
-# Plugin Related Code
 
 # download plugins from the zsh-users repo
 function downloadZshusersPlugin() {
@@ -142,9 +140,13 @@ function zshUserPlugins() {
     repoName="zsh-users"
 
    #downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
-    downloadZshusersPlugin "zsh-completions" "zsh-history-substring-search"
+    downloadZshusersPlugin  "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
 
 }
 
-# End of Plugin related code
-################################################################################
+
+# Source: https://github.com/marlonrichert/zsh-autocomplete
+function zshPluginAutoComplete() {
+    repoName="marlonrichert"
+    downloadZshusersPlugin "zsh-autocomplete"
+}

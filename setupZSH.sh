@@ -28,13 +28,13 @@ function selectSetupType() {
     case $setupTypeSelection in
 
         [cC])   clear
-                ohmyzshPlugins && zshUserPlugins && userPrompt
+                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
                 setupPromptTheme
                 metaAliasAndOthers
                 ;;
 
         "nt"|"NT")  clear
-                ohmyzshPlugins && zshUserPlugins && userPrompt
+                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
                 metaAliasAndOthers
                 ;;
 
