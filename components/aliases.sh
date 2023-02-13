@@ -14,7 +14,7 @@ function checkCommand() {
 function setupBasicAliases() {
     echo "Setting up basic aliases"
 
-echo -en '# general aliases adding color
+echo -en '\n# general aliases adding color
 alias grep="grep --color=auto"
 
 alias pkill="sudo pkill -9"
