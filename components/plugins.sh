@@ -124,7 +124,7 @@ function zshUserPlugins() {
     repoName="zsh-users"
 
    #downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
-    downloadZshusersPlugin  "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
+    downloadZshusersPlugin  "zsh-autosuggestions" "zsh-syntax-highlighting"
 
 }
 

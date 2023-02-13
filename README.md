@@ -1,19 +1,5 @@
 # zshSetup
 
-- [zshSetup](#zshsetup)
-  - [Goal](#goal)
-  - [Slim vs Complete option](#slim-vs-complete-option)
-  - [Screenshots](#screenshots)
-  - [Credits](#credits)
-  - [Plugins](#plugins)
-    - [Oh-my-zsh](#oh-my-zsh)
-    - [zsh-users](#zsh-users)
-      - [disabled](#disabled)
-    - [zsh-autocomplete](#zsh-autocomplete)
-  - [Theming](#theming)
-  - [Projects](#projects)
-
-
 ## Goal
 
 While I may in fact do the same thing I did with my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).  The goal for right now is similiar to the origins of that project.  A way to setup zsh (Linux in the other case) fast on a fresh setup.
@@ -69,9 +55,13 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 ### [zsh-users](https://github.com/zsh-users)
 
-- zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
-- zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
-- zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+- Enabled by Default
+  - zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
+  - zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+- Not Enabled by Default
+  - zsh-completions: https://github.com/zsh-users/zsh-completions
+  - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
+
 
 #### disabled 
 
