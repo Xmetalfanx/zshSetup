@@ -2,10 +2,12 @@
 clear
 
 # import needed functions
+
 source components/plugins.sh
 source components/aliases.sh
 source components/general.sh
 source components/theming.sh
+source components/themePlugins.sh
 
 #################################################################################
 
@@ -29,7 +31,7 @@ function selectSetupType() {
 
         [cC])   clear
                 ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
-                setupPromptTheme
+                installAgnosterTheme
                 metaAliasAndOthers
                 ;;
 
@@ -39,6 +41,7 @@ function selectSetupType() {
                 ;;
 
         [mM])   clear
+                installAgnosterTheme
                 setupPromptTheme
                 metaAliasAndOthers
                 ;;
@@ -46,10 +49,12 @@ function selectSetupType() {
         [sS])   clear
                 metaAliasAndOthers
                 ;;
-
+        
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
 
     esac
+
+    # my old theming: setupPromptTheme
 }
 
 selectSetupType

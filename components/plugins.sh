@@ -42,45 +42,6 @@ function omzSettings() {
 
 }
 
-# download plugins from the ohmyzsh repo 
-function downloadOhMyZSHPlugin() {
-    # here "repoName" is set already
-    ohmyzshRepo="https://github.com/ohmyzsh/ohmyzsh.git"
-    # where to put downloaded omz plugin
-    localOhMyZshDir="assets/ohmyzsh"
-    settingsFile="settings/settings.cfg"
-    ohmyzshPluginsDir="${localOhMyZshDir}/plugins/"
-
-    omzSettings
-
-    # if the counter is greater than or equal to 5, remove the cached omz folder (and eventually dl it again)
-    [[ ${zshCounter} -gt 4 ]] && rm -rf "${localOhMyZshDir}"
-
-
-    if [[ ! -d "${localOhMyZshDir}" || "${zshCounter}" -gt 4 ]]; then
-        # download OMZ and increase the counter
-        echo "Downloading OhMyZsh Repo"
-        git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
-        zshCounter=1
-    elif [ -d "${localOhMyZshDir}" ]; then 
-        ((zshCounter++))
-    fi
-    
-    echo "zshCounter=${zshCounter}" > ${settingsFile}
-
-
-    for currentPlugin in "${@}"
-    do
-        currentPluginLocalDir="${ohmyzshPluginsDir}${currentPlugin}"
-
-        [ -d "${currentPluginLocalDir}" ] && echo -e "Copying ${currentPluginLocalDir} to ${zshConfigDir}"
-        cp -r "${currentPluginLocalDir}" "${zshConfigDir}"
-
-    done
-
-    setupPlugins "${@}"
-}
-
 # setup .zshrc file with the downloaded plugins 
 function setupPlugins() {
 
@@ -95,6 +56,29 @@ function setupPlugins() {
     done
 
 }
+
+# download plugins from the ohmyzsh repo 
+function downloadOhMyZSHPlugin() {
+    # here "repoName" is set already
+    # load vars 
+    loadOMZVars
+
+    omzSettings
+
+    downloadOhMyZSH
+
+    for currentPlugin in "${@}"
+    do
+        currentPluginLocalDir="${localOhMyZshPluginsDir}${currentPlugin}"
+
+        [ -d "${currentPluginLocalDir}" ] && echo -e "Copying ${currentPluginLocalDir} to ${zshConfigDir}"
+        cp -r "${currentPluginLocalDir}" "${zshConfigDir}"
+
+    done
+
+    setupPlugins "${@}"
+}
+
 
 ############################################################################
 

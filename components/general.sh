@@ -1,5 +1,7 @@
 #!/bin/bash
 
+settingsFile="settings/settings.cfg"
+
 #sort of used in debugging so i can pause the screen
 function userPrompt() {
     read -p "Press Any Key to continue"
@@ -11,22 +13,22 @@ function detectDistro(){
     osReleaseName=$(awk -F\" '/^NAME/ { print $2}' /etc/os-release)
 
 
-    if [ $(command -v apt) ]; then
+    if [ "$(command -v apt)" ]; then
         
         # ubuntu vs debian
-        case ${osReleaseName} in 
+        case "${osReleaseName}" in 
             "Debian GNU/Linux") distroBase="debian" ;;
             Ubuntu) distroBase="ubuntu" ;;
         esac 
 
 
-    elif [ $(command -v dnf) ]; then
+    elif [ "$(command -v dnf)" ]; then
         distroBase="fedora"
-    elif [[ $(command -v eopkg) || osReleaseName == "Solus" ]]; then
+    elif [[ "$(command -v eopkg)" || osReleaseName == "Solus" ]]; then
         distroBase="solus"
-    elif [ $(command -v pacman) ]; then
+    elif [ "$(command -v pacman)" ]; then
         distroBase="arch"
-    elif [ $(command -v zypper) ]; then
+    elif [ "$(command -v zypper)" ]; then
         distroBase="opensuse"
     else
         echo "error detecting distro base"
@@ -41,6 +43,8 @@ function detectDistro(){
 function intialTasks {
     # Basic Variables
     zshConfigDir="/home/${USER}/.config/zsh"
+    zshThemeDir="${zshConfigDir}/themes"
+
     zshConfigFile="/home/${USER}/.zshrc"
 
     # create a .zshrc file if one doesn't exist already
@@ -88,4 +92,40 @@ function createHistoryLocation() {
 function metaAliasAndOthers() {
     createHistoryLocation
     metaAliasSetup
+}
+
+#########################################
+# OMZ related 
+function loadOMZVars() {
+
+    ohmyzshRepo="https://github.com/ohmyzsh/ohmyzsh.git"
+
+    # where to put downloaded omz plugin
+    localOhMyZshDir="assets/ohmyzsh"
+    localOhMyZshPluginsDir="${localOhMyZshDir}/plugins/"
+    localOhMyZshThemesDir="${localOhMyZshDir}/themes/"
+
+    # WHERE TO PUT themes 
+    ZSHThemeLocation="/home/${USER}/.config/zsh/themes/"
+
+}
+
+# Downloads ohMyZsh
+function downloadOhMyZSH(){
+    # if the counter is greater than or equal to 5, remove the cached omz folder (and eventually dl it again)
+    [[ ${zshCounter} -gt 4 ]] && rm -rf "${localOhMyZshDir}"
+
+    if [[ ! -d "${localOhMyZshDir}" || "${zshCounter}" -gt 4 ]]; then
+        # download OMZ and increase the counter
+        echo "Downloading OhMyZsh Repo"
+        git clone -q "${ohmyzshRepo}" "${localOhMyZshDir}"
+        zshCounter=1
+    elif [ -d "${localOhMyZshDir}" ]; then 
+        ((zshCounter++))
+    fi
+    
+    echo "zshCounter=${zshCounter}" > ${settingsFile}
+
+
+
 }
