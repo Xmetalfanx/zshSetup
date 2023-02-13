@@ -8,6 +8,8 @@
   - [Plugins](#plugins)
     - [Oh-my-zsh](#oh-my-zsh)
     - [zsh-users](#zsh-users)
+      - [disabled](#disabled)
+    - [zsh-autocomplete](#zsh-autocomplete)
   - [Theming](#theming)
   - [Projects](#projects)
 
@@ -67,10 +69,15 @@ The harcoded plugins I include belong to their projects and developers .. I am n
 
 ### [zsh-users](https://github.com/zsh-users)
 
-- zsh-completions: https://github.com/zsh-users/zsh-completions
 - zsh-autosuggestion: https://github.com/zsh-users/zsh-autosuggestions
 - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
 - zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+
+#### disabled 
+
+- zsh-completions: https://github.com/zsh-users/zsh-completions
+
+### [zsh-autocomplete]()
 
 ## Theming
 - The only theme code I have now is based on (the overall look, maybe not default color scheme) [BobTheFish](https://github.com/oh-my-fish/theme-bobthefish) used in the [Fish Shell](https://fishshell.com/)/[Fish on Github](https://github.com/fish-shell/fish-shell) from [OhMyFish](https://github.com/oh-my-fish/oh-my-fish)
