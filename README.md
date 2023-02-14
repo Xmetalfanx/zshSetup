@@ -1,16 +1,37 @@
 # zshSetup
 
+- [zshSetup](#zshsetup)
+  - [Goal](#goal)
+  - [How to run](#how-to-run)
+  - [Setup Options](#setup-options)
+  - [Screenshots](#screenshots)
+  - [Credits](#credits)
+  - [Plugins](#plugins)
+    - [Oh-my-zsh](#oh-my-zsh)
+    - [zsh-users](#zsh-users)
+    - [zsh-autocomplete](#zsh-autocomplete)
+  - [Theming](#theming)
+  - [Projects](#projects)
+
 ## Goal
 
 While I may in fact do the same thing I did with my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).  The goal for right now is similiar to the origins of that project.  A way to setup zsh (Linux in the other case) fast on a fresh setup.
 
 Menus and "Do you want to install A or B?" type things may come later but this is just a fast set of tasks I have tossed together for now .. again like the origins of my [Linux Setup Scripts](https://github.com/Xmetalfanx/linuxSetup).
 
-## Slim vs Complete option 
+## How to run
+  - Once downloaded, navigate to the zshSetup folder and type
+    `bash setupZSH.sh`
+## Setup Options
 - Complete 
-  - Installs plugins sourced from zsh-users and ohMyZsh repos that I find at least possibly useful
+  - Installs plugins sourced from Github repos such as zsh-users and ohMyZsh, that I find at least possibly useful
   - Sets up history file in ~/.cache/zsh/history
   - Sets up Prompt "theme"
+  - Sets up Aliases
+
+- NonTheme Complete
+  - Installs plugins sourced from Github repos such as zsh-users and ohMyZsh, that I find at least possibly useful
+  - Sets up history file in ~/.cache/zsh/history
   - Sets up Aliases
 
 - Medium 
@@ -31,7 +52,7 @@ Menus and "Do you want to install A or B?" type things may come later but this i
 
 ## Credits
 
-The harcoded plugins I include belong to their projects and developers .. I am not even sure i am keeping these hard-coded in... ALL CREDIT for their code goes to them 
+ALL CREDIT for the downloaded plugins go to their developer(s).
 
 ## Plugins
 
@@ -62,12 +83,8 @@ The harcoded plugins I include belong to their projects and developers .. I am n
   - zsh-completions: https://github.com/zsh-users/zsh-completions
   - zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search
 
-
-#### disabled 
-
-- zsh-completions: https://github.com/zsh-users/zsh-completions
-
-### [zsh-autocomplete]()
+### [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete)
+  - When typing a list of options related to what is typed, is displayed under the current prompt.
 
 ## Theming
 - The only theme code I have now is based on (the overall look, maybe not default color scheme) [BobTheFish](https://github.com/oh-my-fish/theme-bobthefish) used in the [Fish Shell](https://fishshell.com/)/[Fish on Github](https://github.com/fish-shell/fish-shell) from [OhMyFish](https://github.com/oh-my-fish/oh-my-fish)
