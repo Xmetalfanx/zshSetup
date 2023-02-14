@@ -54,8 +54,18 @@ function intialTasks {
 }
 
 function backupZSHRC() {
-    echo -e "Backing up existing zshrc"
-    cp "${zshConfigFile}" "${zshConfigFile}.backup"
+    # make backup of existing/intial zshrc file if not created already
+    # idea: to be able to go back to the VERY first config file a user may have had
+
+    if [[ ! -f "${zshConfigFile}.intial" && -f "${zshConfigFile}" ]]; then
+        echo -e "Backing up INTIAL zsh file"
+        cp "${zshConfigFile}" "${zshConfigFile}.intial"
+        echo -e "Intial zshrc file backed up"
+    else
+        # this should be the one that gets triggered for all but the first time the scripts are ran
+        echo -e "Backing up existing zshrc"
+        cp "${zshConfigFile}" "${zshConfigFile}.backup"
+    fi
 }
 
 function clearZSHRC() {
