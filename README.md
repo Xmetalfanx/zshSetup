@@ -23,30 +23,19 @@ Menus and "Do you want to install A or B?" type things may come later but this i
   - Once downloaded, navigate to the zshSetup folder and type
     `bash setupZSH.sh`
 ## Setup Options
-- Complete 
-  - Installs plugins sourced from Github repos such as zsh-users and ohMyZsh, that I find at least possibly useful
-  - Sets up history file in ~/.cache/zsh/history
-  - Sets up Prompt "theme"
-  - Sets up Aliases
 
-- NonTheme Complete
-  - Installs plugins sourced from Github repos such as zsh-users and ohMyZsh, that I find at least possibly useful
-  - Sets up history file in ~/.cache/zsh/history
-  - Sets up Aliases
+| Task Done                                         | Slim | Medium | NonTheme Complete | Complete |
+| ------------------------------------------------- | ---- | ------ | ----------------- | -------- |
+| Sets Up Aliases *                                 | Yes  | Yes    | Yes               | Yes      |
+| Sets up zsh history file in  ~/.cache/zsh/history | Yes  | Yes    | Yes               | Yes      |
+| Sets up Prompt theme (Agnoster from OMZ repo)     | No   | Yes    | No                | Yes      |
+| Sets up various  downloaded zsh plugins           | No   | No     | Yes               | Yes      |
 
-- Medium 
-  - Sets up history file in ~/.cache/zsh/history
-  - Sets up Prompt "theme"
-  - Sets up Aliases
-
-- Slim 
-  - Sets up history file in ~/.cache/zsh/history
-  - Sets up Aliases
-
+  - * a check is ran to only add the aliases if the command is valid for your system... meaning say the "yarn" aliases SHOULDN'T be added if you do not have/use "yarn" 
 ## Screenshots 
 
 | Before/Vanilla zsh                                   | After running (Complete option) Scripts               |
-|------------------------------------------------------|-------------------------------------------------------|
+| ---------------------------------------------------- | ----------------------------------------------------- |
 | ![Before/Vanilla zsh](assets/screenshots/before.jpg) | ![After running script](assets/screenshots/after.jpg) |
 
 
