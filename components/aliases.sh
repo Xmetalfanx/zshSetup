@@ -1,11 +1,13 @@
 #!/bin/bash
 
 function checkCommand() {
-    # i think "if it doesn't exist" would be best
-    
-    [[ ! "$1" ]]  && echo -e "Not adding ${1} aliases as ${1} doesn't seem to be installed" && return 
 
-    # ?? where is it returning to? 
+    # Checking if ${1} is installed, otherwise aliases for ${1} will NOT be added
+    echo -e "Checking if ${1} is installed"
+
+    [[ "$1" ]] && echo -e "${1} IS present" || echo -e "${1} is NOT present" || return
+
+    # ?? where is it returning to?
 }
 
 
@@ -162,8 +164,6 @@ alias yup="yarn upgrade"
 function metaAliasSetup() {
 
     echo  "Setting up Aliases"
-    userPrompt
-    
     setupBasicAliases
     setupLsAliases
     setupGitAliases

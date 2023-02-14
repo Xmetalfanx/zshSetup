@@ -95,8 +95,10 @@ function ohmyzshPlugins_distroSpecific() {
 
     #downloadOhMyZSHPlugin "colorize" "colored-man-pages"
 
-    [ "${distroBase}" == "ubuntu" ] && downloadOhMyZSHPlugin "colorize"
+    [ "${distroBase}" == "ubuntu" ] && downloadOhMyZSHPlugin "colorize" || return
+
 }
+
 
 
 # The "Default" OMZ plugin function 
@@ -110,6 +112,9 @@ function ohmyzshPlugins() {
     downloadOhMyZSHPlugin "dirhistory" "sudo"
 
     ohmyzshPlugins_distroSpecific
+
+    echo -e "OhMyZsh Plugins Added\v"
+
 }
 
 function zshUserPlugins() {
@@ -126,6 +131,7 @@ function zshUserPlugins() {
    #downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
     downloadZshusersPlugin  "zsh-autosuggestions" "zsh-syntax-highlighting"
 
+    echo -e "zsh-users Plugins Added\v"
 }
 
 
