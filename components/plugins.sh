@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # download plugins from the zsh-users repo
 function downloadZshusersPlugin() {
     pluginName=${1}
@@ -84,32 +83,25 @@ function downloadOhMyZSHPlugin() {
 
 # Plugins that may not work on all distros by default anyway
 # this will probably be renamed later 
-function ohmyzshPlugins_distroSpecific() { 
+function ohmyzshPlugins_distroSpecific() {
     # Repo:
     # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
-    # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
-
-    # colorize doesn't always work on non-Ubuntu distros (* by default) in my tests and I cant get colored-man-pages to work even though i DID see it working once before I started these scripts 
 
     repoName="ohmyzsh"
 
-    #downloadOhMyZSHPlugin "colorize" "colored-man-pages"
-
-    [ "${distroBase}" == "ubuntu" ] && downloadOhMyZSHPlugin "colorize" || return
+    #downloadOhMyZSHPlugin "colored-man-pages"
 
 }
 
-
-
-# The "Default" OMZ plugin function 
+# The "Default" OMZ plugin function
 function ohmyzshPlugins() {
     # Repo:
-    # dirhistory: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+    # colorize: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "dirhistory" "sudo"
+    downloadOhMyZSHPlugin "colorize" "sudo"
 
     ohmyzshPlugins_distroSpecific
 
@@ -139,4 +131,15 @@ function zshUserPlugins() {
 function zshPluginAutoComplete() {
     repoName="marlonrichert"
     downloadZshusersPlugin "zsh-autocomplete"
+}
+
+##############################################################################
+# testing
+function ohmyzshPluginsTest() {
+    # Repo:
+    # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
+
+    repoName="ohmyzsh"
+
+    downloadOhMyZSHPlugin "colored-man-pages"
 }

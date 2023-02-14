@@ -49,6 +49,10 @@ function selectSetupType() {
         [sS])   clear
                 metaAliasAndOthers
                 ;;
+
+        [tT])   clear
+                ohmyzshPluginsTest
+                ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
 
