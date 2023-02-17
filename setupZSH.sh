@@ -14,7 +14,6 @@ source components/themePlugins.sh
 intialTasks
 clearZSHRC
 
-
 function selectSetupType() {
 
         echo -e "Brief Description
@@ -51,7 +50,9 @@ function selectSetupType() {
                 ;;
 
         [tT])   clear
-                ohmyzshPluginsTest
+                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
+                freshThemeTry1
+                metaAliasAndOthers 
                 ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
