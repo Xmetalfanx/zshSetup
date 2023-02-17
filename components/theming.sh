@@ -173,3 +173,19 @@ PROMPT='${PROMPT}'
 
 }
 
+# lets user pick between my default theme (a WIP) or Agnoster
+function themeChooser(){
+    clear
+    echo -en "Theme Chooser
+Which theme would you like to use?
+1) My Custom Theme - no need for a plugin
+2) OhMyZsh's version of the Agnoster Theme"
+read -p "Your Choice (1/2): " themeSelection
+
+    case $themeSelection in 
+        1) freshThemeTry1 ;;
+        2) installAgnosterTheme ;;
+        *) echo "invalid selection" ;; 
+    esac 
+
+}

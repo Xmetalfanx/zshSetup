@@ -30,7 +30,7 @@ function selectSetupType() {
 
         [cC])   clear
                 ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
-                installAgnosterTheme
+                themeChooser
                 metaAliasAndOthers
                 ;;
 
@@ -40,8 +40,7 @@ function selectSetupType() {
                 ;;
 
         [mM])   clear
-                installAgnosterTheme
-                setupPromptTheme
+                themeChooser
                 metaAliasAndOthers
                 ;;
 
@@ -49,11 +48,11 @@ function selectSetupType() {
                 metaAliasAndOthers
                 ;;
 
-        [tT])   clear
-                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
-                freshThemeTry1
-                metaAliasAndOthers 
-                ;;
+        # [tT])   clear
+        #         ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
+        #         freshThemeTry1
+        #         metaAliasAndOthers 
+        #         ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
 
