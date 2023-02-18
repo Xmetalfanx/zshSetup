@@ -23,10 +23,16 @@ function ohmyzshThemeInstall() {
 }
 
 function installAgnosterTheme() {
-    # setopt promptsubs    may  need to be added to zshrc file too 
-    
     themeName="agnoster"
-
+    
+    clear 
+    echo -e "Moving needed file first"
+    cp "${localOhMyZshDir}/lib/git.zsh" "${zshConfigDir}"
+        
+    echo -e "Sourcing needed file" 
+    echo -en "source ${zshConfigDir}/git.zsh" >> ${zshConfigFile}
+            
+    echo -e "Setting up ${themeName} theme"
     echo -e "\n# Theming\nsetopt promptsubst" >> ${zshConfigFile}
     ohmyzshThemeInstall ${themeName}
 
