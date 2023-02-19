@@ -23,7 +23,7 @@ function selectSetupType() {
 
 \vDo you want the Slim, Medium or Complete setup?
         "
-        read -p "(s/m/nt/c)" setupTypeSelection
+        read -rp "(s/m/nt/c)" setupTypeSelection
 
     case $setupTypeSelection in
 
