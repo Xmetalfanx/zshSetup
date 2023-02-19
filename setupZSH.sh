@@ -6,7 +6,7 @@ clear
 source components/plugins.sh
 source components/aliases.sh
 source components/general.sh
-source components/theming.sh
+source components/themeUtils.sh
 
 #################################################################################
 
@@ -47,10 +47,10 @@ function selectSetupType() {
                 metaAliasAndOthers
                 ;;
 
-         [tT])   clear
-        #         ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
-                 themeChooser
-        #         metaAliasAndOthers 
+         [tT])  clear
+                #ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
+                themeChooser
+                #metaAliasAndOthers 
                 ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 

@@ -1,0 +1,7 @@
+#############################################################################3
+# Differentiate Root User From Normal User
+
+# The normal BASH prompt displays a $ sign for a normal user. If you log in as a root user, a # sign is displayed. Use the $ code to indicate that the current user is not a root user:
+
+# export PS1="\u@\H \W:\$ "
+
