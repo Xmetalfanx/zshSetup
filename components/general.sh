@@ -4,7 +4,7 @@ settingsFile="settings/settings.cfg"
 
 #sort of used in debugging so i can pause the screen
 function userPrompt() {
-    read -p "Press Any Key to continue"
+    read -rp "Press Any Key to continue"
 }
 
 # ROUGH idea to keep it simple

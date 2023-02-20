@@ -1,10 +1,9 @@
+#!/bin/bash
 
+function xmetalTheme1() {
 
-function xmetalTheme1() {   
-    
     # NAMEBGCOLOR=${DEFAULTBGCOLOR}
     # NAMEFGCOLOR="orange"
-    
     # DATEBGCOLOR="black"
     # DATEFGCOLOR=${whiteFGColor}
 

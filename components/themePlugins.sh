@@ -1,12 +1,16 @@
+#!/bin/bash
 
+# This function can take multiple theme names 
+# what gets passed?: JUST the theme name 
 function ohmyzshThemeInstall() {
-    # load vars
+    # load variables needed 
     loadOMZVars
 
     # create theme dir if it is not there
     [ ! -d "${zshThemeDir}" ] && mkdir "${zshThemeDir}"
 
     downloadOhMyZSH
+
 
     for currentTheme in "${@}"
     do
@@ -18,22 +22,22 @@ function ohmyzshThemeInstall() {
 
         # export into zshrc file 
         echo -e "Setting up ${currentTheme} in .zshrc file "
-        echo "source ${ZSHThemeLocation}${themeFileName}" >> ${zshConfigFile}
+        echo "source ${ZSHThemeLocation}${themeFileName}" >> "${zshConfigFile}"
     done 
 }
 
 function installAgnosterTheme() {
     themeName="agnoster"
-    
-    clear 
+
+    clear
     echo -e "Moving needed file first"
     cp "${localOhMyZshDir}/lib/git.zsh" "${zshConfigDir}"
-        
-    echo -e "Sourcing needed file" 
-    echo -en "source ${zshConfigDir}/git.zsh" >> ${zshConfigFile}
-            
+
+    echo -e "Sourcing needed file"
+    echo -en "source ${zshConfigDir}/git.zsh" >> "${zshConfigFile}"
+
     echo -e "Setting up ${themeName} theme"
-    echo -e "\n# Theming\nsetopt promptsubst" >> ${zshConfigFile}
+    echo -e "\n# Theming\nsetopt promptsubst" >> "${zshConfigFile}"
     ohmyzshThemeInstall ${themeName}
 
 
