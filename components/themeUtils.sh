@@ -1,13 +1,14 @@
 #!/bin/bash
 source "components/themePlugins.sh"
 
+# help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used
+# possible helpful resource: https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
+
 
 ###########################################################################################3
 # Theme Related
 
-# help from https://blog.sellorm.com/2020/01/13/add-the-current-git-branch-to-your-bash-prompt/ used
-# possible helpful resource: https://www.tecmint.com/customize-bash-colors-terminal-prompt-linux/
-
+# Assign Variables
 function themeVars() {
 
     DEFAULTBGCOLOR="%K{#333333}"
@@ -37,6 +38,7 @@ function themeVars() {
     NAMECODE="%n"
     DATECODE="%*"
     FULLPATHCODE="%~"
+    # was there a reason this had to be in single quotes 
     GITBRANCHCODE='$vcs_info_msg_0_'
 
 
@@ -48,29 +50,29 @@ function themeVars() {
 themeVars
 
 
-#leftover function 
-function setupPromptTheme() {
-
-    echo -e "Setting up Prompt UI (Inspired by Fish/Oh-My-Fish's BobTheFish theme" && userPrompt
-    echo -e "\n#Prompt UI\nPROMPT=\"${PROMPT}\"\n" >> "${zshConfigFile}"
-}
-
 ############################################################################################
-# Theme Generation 
+# Theme Generation
 
 # HELPFUL LINK: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 
-
+# Variables piecing the sections together
 function themeSectionSetupVars() {
 
     NAME=${NAMEBGCOLOR}${NAMEFGCOLOR}${NAMECODE}${ENDSECTION} 
     # DATE="%F{${DATEFGCOLOR}}${DATECODE}%f"
     FULLPATH=${FULLPATHBGCOLOR}${FULLPATHFGCOLOR}${FULLPATHCODE}${ENDSECTION}
     PWDPATH=${PWDBGCOLOR}${PWDFGCOLOR}${PWDCODE}${ENDSECTION}
-    GITBRANCH=${GITBRANCHBGCOLOR}${GITBRANCHFGCOLOR}${GITBRANCHCODE}${ENDSECTION}
+    
+    clear
 
+    # looks for git prompt folder and if found the GITBRANCH code in my themes is set to a blank to avoid the prompt showing 
+    # the git branch twice 
+    [ ! -d "${zshConfigDir}/git-prompt" ] && GITBRANCH="${GITBRANCHBGCOLOR}${GITBRANCHFGCOLOR}${GITBRANCHCODE}${ENDSECTION}" || GITBRANCH=""
+
+    echo -e "GITBRANCH:\t${GITBRANCH}"
+    userPrompt
 }
-
+themeSectionSetupVars
 
 # outputs needed code for my custom themes to .zshrc
 function echoThemeCodeToZSHRC() {
@@ -89,23 +91,15 @@ PROMPT='${PROMPT}'
 
 }
 
-
-
 function generateXmetalTheme1() {
 
-    themeSectionSetupVars
-
     PROMPT="%B${NAME}${GITBRANCH}%b"
-
     echoThemeCodeToZSHRC
 }
 
 function generateXmetalTheme2(){
 
-    themeSectionSetupVars
-    
     PROMPT="%B${NAME}${PWDPATH}${GITBRANCH}%b"
-
     echoThemeCodeToZSHRC
 }
 
@@ -130,7 +124,7 @@ Note: No Need for a plugin with these
 2) My first Custom Theme
 3) My Second Custom Theme
 "
-read -p "Your Choice (1/2): " themeSelection
+read -rp "Your Choice (1/2): " themeSelection
 
     case $themeSelection in 
         1) installAgnosterTheme  ;;
