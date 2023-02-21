@@ -1,20 +1,26 @@
 #!/bin/bash
 
+# note: having "" like a blank string especially for BG colors means no BG color
+
 function xmetalTheme1() {
 
-    # NAMEBGCOLOR=${DEFAULTBGCOLOR}
-    # NAMEFGCOLOR="orange"
-    # DATEBGCOLOR="black"
-    # DATEFGCOLOR=${whiteFGColor}
+    NAMEBGCOLOR=${DEFAULTBGCOLOR}
+    NAMEFGCOLOR=${whiteFG}
+
+    DATEBGCOLOR=""
+    DATEFGCOLOR=${whiteFG}
 
     FULLPATHBGCOLOR=${DEFAULTBGCOLOR}
-    FULLPATHFGCOLOR=${whiteFGColor}
+    FULLPATHFGCOLOR=${whiteFG}
 
     PWDBGCOLOR=${DEFAULTBGCOLOR}
-    PWDFGCOLOR=${whiteFGColor}
+    PWDFGCOLOR=${whiteFG}
 
     GITBRANCHBGCOLOR=""
-    GITBRANCHFGCOLOR=${greenFGColor}
+    GITBRANCHFGCOLOR=${greenFG}
+
+
+    echo -e "${NAMEBGCOLOR}\t${NAMEFGCOLOR}"
 
     generateXmetalTheme1
 }
@@ -23,20 +29,21 @@ function xmetalTheme1() {
 function xmetalTheme2() {   
    
     NAMEBGCOLOR=${DEFAULTBGCOLOR}
-    NAMEFGCOLOR=${whiteFGColor}
+    NAMEFGCOLOR=${whiteFG}
     
-    # DATEBGCOLOR=${whiteBGColor}
-    # DATEFGCOLOR="black"
+    DATEBGCOLOR=${whiteBG}
+    DATEFGCOLOR=""
 
-    # FULLPATHBGCOLOR="#205cbd"
-    # FULLPATHFGCOLOR=${whiteFGColor}
+    FULLPATHBGCOLOR=""
+    FULLPATHFGCOLOR=${whiteFG}
 
     PWDBGCOLOR=${DEFAULTBGCOLOR}
-    PWDFGCOLOR=${whiteFGColor}
+    PWDFGCOLOR=${whiteFG}
 
     GITBRANCHBGCOLOR=${DEFAULTBGCOLOR}
-    GITBRANCHFGCOLOR=${greenFGColor}
+    GITBRANCHFGCOLOR=${blueFG}
 
-    
+    echo -e "${NAMEBGCOLOR}\t${NAMEFGCOLOR}"
+
    generateXmetalTheme2
 }

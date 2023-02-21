@@ -48,7 +48,7 @@ function selectSetupType() {
                 ;;
 
          [tT])  clear
-                ohmyzshPlugins 
+                #ohmyzshPlugins 
                 #&& zshUserPlugins && zshPluginAutoComplete && userPrompt
                 themeChooser
                 #metaAliasAndOthers 
