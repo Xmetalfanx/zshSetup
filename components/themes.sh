@@ -17,10 +17,7 @@ function xmetalTheme1() {
     PWDFGCOLOR=${whiteFG}
 
     GITBRANCHBGCOLOR=""
-    GITBRANCHFGCOLOR=${greenFG}
-
-
-    echo -e "${NAMEBGCOLOR}\t${NAMEFGCOLOR}"
+    GITBRANCHFGCOLOR=${neonGreenFG}
 
     generateXmetalTheme1
 }
@@ -42,8 +39,6 @@ function xmetalTheme2() {
 
     GITBRANCHBGCOLOR=${DEFAULTBGCOLOR}
     GITBRANCHFGCOLOR=${blueFG}
-
-    echo -e "${NAMEBGCOLOR}\t${NAMEFGCOLOR}"
 
    generateXmetalTheme2
 }

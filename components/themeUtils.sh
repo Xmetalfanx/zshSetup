@@ -28,7 +28,7 @@ function themeVars() {
     # Background Colors
     blackBG=$(generateBGColorCode "#000000")
     blueBG=$(generateBGColorCode "#0000FF")
-    greenBG=$(generateBGColorCode "green")
+    neonGreenBG=$(generateBGColorCode "#39ff14")
     orangeBG=$(generateBGColorCode "#FF791A")
     redBG=$(generateBGColorCode "#FF0000")
     whiteBG=$(generateBGColorCode "#FFFFFF")
@@ -37,7 +37,7 @@ function themeVars() {
     # Forground Colors 
     
     blueFG=$(generateFGColorCode "#0000FF")
-    greenFG=$(generateFGColorCode "green")
+    neonGreenFG=$(generateFGColorCode "#39ff14")
     orangeFG=$(generateFGColorCode "#FF791A")
     redFG=$(generateFGColorCode "#FF0000")
     whiteFG=$(generateFGColorCode "#FFFFFF")
@@ -72,9 +72,7 @@ themeVars
 function debuggingOutput() {
     echo -e "${NAME}\n${FULLPATH}\n${PWDPATH}"
     userPrompt
-
 }
-
 
 # Variables piecing the sections together
 function themeSectionSetupVars() {
@@ -83,9 +81,6 @@ function themeSectionSetupVars() {
     DATE="%F{${DATEFGCOLOR}}${DATECODE}%f"
     FULLPATH=${FULLPATHBGCOLOR}${FULLPATHFGCOLOR}${FULLPATHCODE}${ENDSECTION}
     PWDPATH=${PWDBGCOLOR}${PWDFGCOLOR}${PWDCODE}${ENDSECTION}
-
-    debuggingOutput
-
 
     clear
 
