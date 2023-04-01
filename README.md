@@ -49,19 +49,30 @@ ALL CREDIT for the downloaded plugins go to their developer(s).
 
 ### [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-- Colorize: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize>
-- allows you to type `ccat <file>` to show a file in cat but with syntax coloring
+- **Colorize**:
+  - Source: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize>
+  - allows you to type `ccat <file>` to show a file in cat but with syntax coloring
+- **FZF**
+  - Source: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf>
+  - Fuzzy Finder in terminal
+  - Keybindings:
+    - `Ctrl+T` to "start"
+    - CTRL-R: ??
+    - ALT-C: ??
 
-- sudo: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo>
+- **sudo**:
+  - Source: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo>
   - lets you  press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
 
-- Plugins disabled for now
+- *Plugins disabled for now*
   - Some distro bases are having trouble with these out of the box, so I have decided to disable them for a smoother experience until I figure things out.
-  - colored-man-pages: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages>
+  - colored-man-pages:
+    - Homepage: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages>
     - shows man pages with colored syntax highlighting
 
 - Other Disabled Plugin
-  - DirHistory: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory>
+  - DirHistory:
+    - Homepage: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory>
     - Allows you to use Alt+Arrow Keys to navigate between say the PWD and Parent or Child directories
     - issue: I find this doesn't work in the terminal "inside of" vscode
     - MY COMMENT: There is nothing wrong with this plugin ... I have chosen to disable it since with autocomplete using the same keybindings, this doesn't work if both plugins are added.   I am leaving this here since some users who dont want to use auto-complete MAY find this plugin useful.
@@ -78,6 +89,7 @@ ALL CREDIT for the downloaded plugins go to their developer(s).
 ### [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete)
 
 - When typing a list of options related to what is typed, is displayed under the current prompt.
+  - I THINK this is the plugin that caused me to disable Zshuser's Completion and substring search plugins, listed above.
 
 ## Theming
 

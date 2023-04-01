@@ -101,7 +101,7 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "sudo" 
+    downloadOhMyZSHPlugin "colorize" "sudo" "fzf"
     #"git-prompt"
 
     ohmyzshPlugins_distroSpecific
