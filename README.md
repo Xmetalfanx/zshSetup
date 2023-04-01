@@ -50,7 +50,7 @@ ALL CREDIT for the downloaded plugins go to their developer(s).
 ### [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 - Colorize: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize>
-- allows you to type "ccat <file>" to show a file in cat but with syntax coloring
+- allows you to type `ccat <file>` to show a file in cat but with syntax coloring
 
 - sudo: <https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo>
   - lets you  press ESC twice and it will add "sudo" to the start of lines you may have forgotten to add it to
