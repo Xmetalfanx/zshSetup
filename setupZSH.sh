@@ -48,7 +48,7 @@ function selectSetupType() {
                 ;;
 
          [tT])  clear
-                coloredManPages
+                zshPluginAutoComplete
                 ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 

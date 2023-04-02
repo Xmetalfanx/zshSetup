@@ -1,9 +1,12 @@
 #!/bin/bash
 
+function removeGitFolder() {
+    echo "Removing .git folder from local plugin directory " && rm -rf "${localZshUsersDir}/.git"
+}
+
 # download plugins from the zsh-users repo
 # April 2023: this works for more than just this repo 
 function downloadZshPlugin() {
-    pluginName=${1}
 
     # zshConfigDir is the config dir in ~/.config/ .... ~/.config/zsh 
     #localZshUsersDir="${zshConfigDir}/${pluginName}"
@@ -13,7 +16,6 @@ function downloadZshPlugin() {
             # April 2023: WHY is this redeclared here? 
             localZshUsersDir="${zshConfigDir}/${currentPlugin}"
 
-
             # https://github.com/zsh-users/zsh-autosuggestions
             # zsh-users
             gitPluginURL="https://github.com/${repoName}/${currentPlugin}"
@@ -22,8 +24,10 @@ function downloadZshPlugin() {
 
             echo -e "Downloading ${currentPlugin} to ${zshConfigDir}"
 
-            git clone -q "${gitPluginURL}" "${localZshUsersDir}"
+            git clone -q --depth=1 "${gitPluginURL}" "${localZshUsersDir}"
 
+            removeGitFolder
+            
             gitPluginURL=""
 
         done
@@ -76,6 +80,8 @@ function downloadOhMyZSHPlugin() {
         [ -d "${currentPluginLocalDir}" ] && echo -e "Copying ${currentPluginLocalDir} to ${zshConfigDir}"
         cp -r "${currentPluginLocalDir}" "${zshConfigDir}"
 
+        removeGitFolder
+
     done
 
     setupPlugins "${@}"
@@ -93,7 +99,6 @@ function ohmyzshPlugins() {
     repoName="ohmyzsh"
 
     downloadOhMyZSHPlugin "colorize" "sudo" "fzf"
-    #"git-prompt"
 
     echo -e "OhMyZsh Plugins Added\v"
 
@@ -110,7 +115,7 @@ function zshUserPlugins() {
 
     repoName="zsh-users"
 
-    downloadZshPlugin  "zsh-autosuggestions" "zsh-syntax-highlighting"
+    downloadZshPlugin "zsh-autosuggestions" "zsh-syntax-highlighting"
 
     echo -e "zsh-users Plugins Added\v"
 }
@@ -119,17 +124,20 @@ function zshPluginAutoComplete() {
     # Repo: [marlonrichert](https://github.com/marlonrichert/zsh-autocomplete)
 
     repoName="marlonrichert"
-    # since this is not a zshuser's plugin i think i should rename that function 
     downloadZshPlugin "zsh-autocomplete"
+
+    echo -e "zsh-autocomplete plugin from ${repoName} Added\v"
 }
 
 function coloredManPages() {
     # Repo: [zsh-colored-man-pages](https://github.com/ael-code/zsh-colored-man-pages)
 
-    repoName="ael-code"
     coloredManPagesConfigDir="${zshConfigDir}/zsh-colored-man-pages/"
 
+    repoName="ael-code"
     downloadZshPlugin "zsh-colored-man-pages"
      
     [ -f "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" ] && echo "Rename fix applied" && mv "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" "${coloredManPagesConfigDir}/zsh-colored-man-pages.plugin.zsh" && userPrompt
+
+    echo -e "colored-man-pages from ${repoName} repo Added\v"
 }
