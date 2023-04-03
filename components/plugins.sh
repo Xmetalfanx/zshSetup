@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # download plugins from the zsh-users repo
-function downloadZshusersPlugin() {
+# April 2023: this works for more than just this repo 
+function downloadZshPlugin() {
     pluginName=${1}
 
-    localZshUsersDir="${zshConfigDir}/${pluginName}"
+    # zshConfigDir is the config dir in ~/.config/ .... ~/.config/zsh 
+    #localZshUsersDir="${zshConfigDir}/${pluginName}"
 
     for currentPlugin in "${@}"
         do
+            # April 2023: WHY is this redeclared here? 
             localZshUsersDir="${zshConfigDir}/${currentPlugin}"
 
 
@@ -81,18 +84,6 @@ function downloadOhMyZSHPlugin() {
 
 ############################################################################
 
-# Plugins that may not work on all distros by default anyway
-# this will probably be renamed later 
-function ohmyzshPlugins_distroSpecific() {
-    # Repo:
-    # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
-
-    repoName="ohmyzsh"
-
-    #downloadOhMyZSHPlugin "colored-man-pages"
-
-}
-
 # The "Default" OMZ plugin function
 function ohmyzshPlugins() {
     # Repo:
@@ -103,8 +94,6 @@ function ohmyzshPlugins() {
 
     downloadOhMyZSHPlugin "colorize" "sudo" "fzf"
     #"git-prompt"
-
-    ohmyzshPlugins_distroSpecific
 
     echo -e "OhMyZsh Plugins Added\v"
 
@@ -121,26 +110,26 @@ function zshUserPlugins() {
 
     repoName="zsh-users"
 
-   #downloadZshusersPlugin "zsh-completions" "zsh-autosuggestions" "zsh-history-substring-search" "zsh-syntax-highlighting"
-    downloadZshusersPlugin  "zsh-autosuggestions" "zsh-syntax-highlighting"
+    downloadZshPlugin  "zsh-autosuggestions" "zsh-syntax-highlighting"
 
     echo -e "zsh-users Plugins Added\v"
 }
 
-
-# Source: https://github.com/marlonrichert/zsh-autocomplete
 function zshPluginAutoComplete() {
+    # Repo: [marlonrichert](https://github.com/marlonrichert/zsh-autocomplete)
+
     repoName="marlonrichert"
-    downloadZshusersPlugin "zsh-autocomplete"
+    # since this is not a zshuser's plugin i think i should rename that function 
+    downloadZshPlugin "zsh-autocomplete"
 }
 
-##############################################################################
-# testing
-function ohmyzshPluginsTest() {
-    # Repo:
-    # colored-man-pages: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
+function coloredManPages() {
+    # Repo: [zsh-colored-man-pages](https://github.com/ael-code/zsh-colored-man-pages)
 
-    repoName="ohmyzsh"
+    repoName="ael-code"
+    coloredManPagesConfigDir="${zshConfigDir}/zsh-colored-man-pages/"
 
-    downloadOhMyZSHPlugin "colored-man-pages"
+    downloadZshPlugin "zsh-colored-man-pages"
+     
+    [ -f "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" ] && echo "Rename fix applied" && mv "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" "${coloredManPagesConfigDir}/zsh-colored-man-pages.plugin.zsh" && userPrompt
 }

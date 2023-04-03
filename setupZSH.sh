@@ -1,5 +1,5 @@
 #!/bin/bash
-clear
+#clear
 
 # import needed functions
 
@@ -28,13 +28,13 @@ function selectSetupType() {
     case $setupTypeSelection in
 
         [cC])   clear
-                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
+                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && coloredManPages && userPrompt
                 themeChooser
                 metaAliasAndOthers
                 ;;
 
         "nt"|"NT")  clear
-                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && userPrompt
+                ohmyzshPlugins && zshUserPlugins && zshPluginAutoComplete && coloredManPages && userPrompt
                 metaAliasAndOthers
                 ;;
 
@@ -48,10 +48,7 @@ function selectSetupType() {
                 ;;
 
          [tT])  clear
-                #ohmyzshPlugins 
-                #&& zshUserPlugins && zshPluginAutoComplete && userPrompt
-                themeChooser
-                #metaAliasAndOthers 
+                coloredManPages
                 ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
