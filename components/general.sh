@@ -20,16 +20,20 @@ function detectDistro(){
             "Debian GNU/Linux") distroBase="debian" ;;
             Ubuntu) distroBase="ubuntu" ;;
         esac 
-
+        install="sudo apt install"
 
     elif [ "$(command -v dnf)" ]; then
         distroBase="fedora"
+        install="sudo dnf install"
     elif [[ "$(command -v eopkg)" || osReleaseName == "Solus" ]]; then
         distroBase="solus"
+        install="sudo eokpg install"
     elif [ "$(command -v pacman)" ]; then
         distroBase="arch"
+        install="sudo pacman -S"
     elif [ "$(command -v zypper)" ]; then
         distroBase="opensuse"
+        install="sudo zypper install"
     else
         echo "error detecting distro base"
         userPrompt
