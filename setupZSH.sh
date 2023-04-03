@@ -48,7 +48,10 @@ function selectSetupType() {
                 ;;
 
          [tT])  clear
-                zshPluginAutoComplete
+                ohmyzshPlugins
+                #zshUserPlugins && zshPluginAutoComplete && coloredManPages && userPrompt
+                #themeChooser
+                #metaAliasAndOthers
                 ;;
         
         *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 

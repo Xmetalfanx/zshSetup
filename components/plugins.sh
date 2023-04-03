@@ -1,5 +1,10 @@
 #!/bin/bash
 
+function setupZSHConfigDirectory() {
+    [ ! -d "${zshConfigDir}" ] && echo -e "${zshConfigDir} doesn't exist, creating now" && mkdir "${zshConfigDir}"
+}
+
+
 function removeGitFolder() {
     echo "Removing .git folder from local plugin directory " && rm -rf "${localZshUsersDir}/.git"
 }
@@ -35,6 +40,7 @@ function downloadZshPlugin() {
         setupPlugins "${@}"
 }
 
+# creating/reading settings file that would control if OMZ would have to be redownloaded 
 function omzSettings() {
     # for counter 
     [ ! -d "settings" ] && echo "Creating settings Directory" && mkdir "settings"
@@ -63,28 +69,47 @@ function setupPlugins() {
 
 }
 
+
 # download plugins from the ohmyzsh repo 
 function downloadOhMyZSHPlugin() {
     # here "repoName" is set already
+    
     # load vars 
     loadOMZVars
 
+    # creating/reading settings file that would control if OMZ would have to be redownloaded 
     omzSettings
 
+    #downloads OhMyZSH to assets folder "if needed"
     downloadOhMyZSH
 
     for currentPlugin in "${@}"
     do
-        currentPluginLocalDir="${localOhMyZshPluginsDir}${currentPlugin}"
+        # this would be in say assets/ohmyzsh/plugins/<name> 
+        currentPluginAssetsDir="${localOhMyZshPluginsDir}${currentPlugin}"
+        
+        currentPluginDestDir="${zshConfigDir}"
 
-        [ -d "${currentPluginLocalDir}" ] && echo -e "Copying ${currentPluginLocalDir} to ${zshConfigDir}"
-        cp -r "${currentPluginLocalDir}" "${zshConfigDir}"
+        # Sets up ~/.config/zsh if its not there 
+        setupZSHConfigDirectory
+        
+        # if the plugin folder doesn't exist in the assets folder (could mean a typo)
+        [ -d "${currentPluginAssetsDir}" ] || echo -e "${currentPluginAssetsDir} not found, check for typos in the plugin name you wanted to install"  || return 
+        
+        [ ! -d "${zshConfigDir}" ] && echo "${zshConfigDir} not found"
+
+        # creates needed dir for where to put the plugin
+        [ ! -d "${currentPluginDestDir}" ] && echo "Creating ${currentPluginDestDir} directory" && mkdir "${currentPluginDestDir}"
+        
+        echo -e "Copying ${currentPluginAssetsDir} to ${currentPluginDestDir}" && cp -a "${currentPluginAssetsDir}" "${currentPluginDestDir}"
 
         removeGitFolder
 
     done
 
     setupPlugins "${@}"
+
+
 }
 
 
@@ -98,7 +123,7 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    downloadOhMyZSHPlugin "colorize" "sudo" "fzf"
+    downloadOhMyZSHPlugin "colorize" "fzf" "sudo" 
 
     echo -e "OhMyZsh Plugins Added\v"
 
