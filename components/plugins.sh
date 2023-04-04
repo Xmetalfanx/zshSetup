@@ -4,7 +4,6 @@ function setupZSHConfigDirectory() {
     [ ! -d "${zshConfigDir}" ] && echo -e "${zshConfigDir} doesn't exist, creating now" && mkdir "${zshConfigDir}"
 }
 
-
 function removeGitFolder() {
     echo "Removing .git folder from local plugin directory " && rm -rf "${localZshUsersDir}/.git"
 }
@@ -122,6 +121,14 @@ function ohmyzshPlugins() {
     # sudo: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
 
     repoName="ohmyzsh"
+
+    # "Check" for fzf  
+	if [ $(command -v fzf) ]; then 
+        echo "Fuzzy find package fzf detected as installed" 
+    else 
+        echo -e "fzf fuzzy find, not detected, installing now" && $install "fzf"
+    fi 
+
 
     downloadOhMyZSHPlugin "colorize" "fzf" "sudo" 
 

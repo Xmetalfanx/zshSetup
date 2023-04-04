@@ -7,6 +7,13 @@ function userPrompt() {
     read -rp "Press Any Key to continue"
 }
 
+# function checkLastCommandStatus() {
+
+# 	[ $? == "0" ] && fancy_message info "${1}" || fancy_message error "${2}"
+# }
+
+
+
 # ROUGH idea to keep it simple
 function detectDistro(){
 
