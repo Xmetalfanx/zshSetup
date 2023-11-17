@@ -9,15 +9,15 @@ function removeGitFolder() {
 }
 
 # download plugins from the zsh-users repo
-# April 2023: this works for more than just this repo 
+# April 2023: this works for more than just this repo
 function downloadZshPlugin() {
 
-    # zshConfigDir is the config dir in ~/.config/ .... ~/.config/zsh 
+    # zshConfigDir is the config dir in ~/.config/ .... ~/.config/zsh
     #localZshUsersDir="${zshConfigDir}/${pluginName}"
 
     for currentPlugin in "${@}"
         do
-            # April 2023: WHY is this redeclared here? 
+            # April 2023: WHY is this redeclared here?
             localZshUsersDir="${zshConfigDir}/${currentPlugin}"
 
             # https://github.com/zsh-users/zsh-autosuggestions
@@ -31,7 +31,7 @@ function downloadZshPlugin() {
             git clone -q --depth=1 "${gitPluginURL}" "${localZshUsersDir}"
 
             removeGitFolder
-            
+
             gitPluginURL=""
 
         done
@@ -39,21 +39,21 @@ function downloadZshPlugin() {
         setupPlugins "${@}"
 }
 
-# creating/reading settings file that would control if OMZ would have to be redownloaded 
+# creating/reading settings file that would control if OMZ would have to be redownloaded
 function omzSettings() {
-    # for counter 
+    # for counter
     [ ! -d "settings" ] && echo "Creating settings Directory" && mkdir "settings"
 
-    # create settings file or reading settings file depending on if it exists 
+    # create settings file or reading settings file depending on if it exists
     if [ ! -f "${settingsFile}" ]; then
         echo "Creating settings file" && touch "${settingsFile}"
     elif [ -f "${settingsFile}" ]; then
         echo "Reading Settings file" && . "${settingsFile}"
-    fi 
+    fi
 
 }
 
-# setup .zshrc file with the downloaded plugins 
+# setup .zshrc file with the downloaded plugins
 function setupPlugins() {
 
     echo -e "Setting up plugins in .zshrc file"
@@ -69,14 +69,14 @@ function setupPlugins() {
 }
 
 
-# download plugins from the ohmyzsh repo 
+# download plugins from the ohmyzsh repo
 function downloadOhMyZSHPlugin() {
     # here "repoName" is set already
-    
-    # load vars 
+
+    # load vars
     loadOMZVars
 
-    # creating/reading settings file that would control if OMZ would have to be redownloaded 
+    # creating/reading settings file that would control if OMZ would have to be redownloaded
     omzSettings
 
     #downloads OhMyZSH to assets folder "if needed"
@@ -84,22 +84,22 @@ function downloadOhMyZSHPlugin() {
 
     for currentPlugin in "${@}"
     do
-        # this would be in say assets/ohmyzsh/plugins/<name> 
+        # this would be in say assets/ohmyzsh/plugins/<name>
         currentPluginAssetsDir="${localOhMyZshPluginsDir}${currentPlugin}"
-        
+
         currentPluginDestDir="${zshConfigDir}"
 
-        # Sets up ~/.config/zsh if its not there 
+        # Sets up ~/.config/zsh if its not there
         setupZSHConfigDirectory
-        
+
         # if the plugin folder doesn't exist in the assets folder (could mean a typo)
-        [ -d "${currentPluginAssetsDir}" ] || echo -e "${currentPluginAssetsDir} not found, check for typos in the plugin name you wanted to install"  || return 
-        
+        [ -d "${currentPluginAssetsDir}" ] || echo -e "${currentPluginAssetsDir} not found, check for typos in the plugin name you wanted to install"  || return
+
         [ ! -d "${zshConfigDir}" ] && echo "${zshConfigDir} not found"
 
         # creates needed dir for where to put the plugin
         [ ! -d "${currentPluginDestDir}" ] && echo "Creating ${currentPluginDestDir} directory" && mkdir "${currentPluginDestDir}"
-        
+
         echo -e "Copying ${currentPluginAssetsDir} to ${currentPluginDestDir}" && cp -a "${currentPluginAssetsDir}" "${currentPluginDestDir}"
 
         removeGitFolder
@@ -122,15 +122,15 @@ function ohmyzshPlugins() {
 
     repoName="ohmyzsh"
 
-    # "Check" for fzf  
-	if [ $(command -v fzf) ]; then 
-        echo "Fuzzy find package fzf detected as installed" 
-    else 
+    # "Check" for fzf
+	if [ $(command -v fzf) ]; then
+        echo "Fuzzy find package fzf detected as installed"
+    else
         echo -e "fzf fuzzy find, not detected, installing now" && $install "fzf"
-    fi 
+    fi
 
 
-    downloadOhMyZSHPlugin "colorize" "fzf" "sudo" 
+    downloadOhMyZSHPlugin "colorize" "fzf" "sudo" "extract"
 
     echo -e "OhMyZsh Plugins Added\v"
 
@@ -168,7 +168,7 @@ function coloredManPages() {
 
     repoName="ael-code"
     downloadZshPlugin "zsh-colored-man-pages"
-     
+
     [ -f "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" ] && echo "Rename fix applied" && mv "${coloredManPagesConfigDir}/colored-man-pages.plugin.zsh" "${coloredManPagesConfigDir}/zsh-colored-man-pages.plugin.zsh" && userPrompt
 
     echo -e "colored-man-pages from ${repoName} repo Added\v"
