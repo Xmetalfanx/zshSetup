@@ -173,3 +173,13 @@ function coloredManPages() {
 
     echo -e "colored-man-pages from ${repoName} repo Added\v"
 }
+
+function installZapPluginManager() {
+
+	# note to self: Official instructions, below
+
+    check-if-zsh-is-installed
+
+    fancy_message action "Installing Zap Plugin Manager for zsh" && zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 && fancy_message info "Zap Plugin Manager now installed, a restart of your terminal maybe needed" || echo "ZSH Shell not installed, yet" || userPrompt
+
+}

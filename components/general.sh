@@ -7,10 +7,40 @@ function userPrompt() {
     read -rp "Press Any Key to continue"
 }
 
-# function checkLastCommandStatus() {
+function checkLastCommandStatus() {
 
-# 	[ $? == "0" ] && fancy_message info "${1}" || fancy_message error "${2}"
-# }
+	[ $? == "0" ] && fancy_message info "${1}" && result="pass" || fancy_message error "${2}" || result="fail"
+}
+
+function fancy_message() {
+
+    # can i do the && thing in place of this if statement, here?
+    if [ -z "${1}" ] || [ -z "${2}" ]; then
+      return
+    fi
+
+    local RED="\e[31m"
+    local GREEN="\e[32m"
+    local YELLOW="\e[33m"
+    local MAGENTA="\e[35m"
+    local RESET="\e[0m"
+    local MESSAGE_TYPE=""
+    local MESSAGE=""
+    MESSAGE_TYPE="${1}"
+    MESSAGE="${2}"
+
+    case ${MESSAGE_TYPE} in
+      info) echo -e "  [${GREEN}-${RESET}] ${MESSAGE}";;
+      action) echo -e "  [${YELLOW}*${RESET}] ${MESSAGE}";;
+      # SHOULD THIS BE BACKWARS WITH THE ? AT THE END?
+      question) echo -e "  [${YELLOW}?${RESET}] ${MESSAGE}";;
+      recommend) echo -e "  [${blue}!${RESET}] ${MESSAGE}";;
+      # for warnigs that dont need a "Warning: " addition
+      lwarn) echo -e "  [${RED}*${RESET}] ${MESSAGE}";;
+      warn) echo -e "  [${RED}*${RESET}] WARNING! ${MESSAGE}";;
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
+    esac
+}
 
 
 
@@ -148,6 +178,11 @@ function downloadOhMyZSH(){
     
     echo "zshCounter=${zshCounter}" > ${settingsFile}
 
+}
 
+function check-if-zsh-is-installed() {
+    zsh --version && checkLastCommandStatus "zsh is installed" "zsh is not installed yet"
+
+    [ "${result}" == "fail" ] && clear && echo "zsh is not installed yet, please install zsh shell first" && selectSetupType
 
 }

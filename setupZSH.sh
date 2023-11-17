@@ -16,14 +16,15 @@ clearZSHRC
 function selectSetupType() {
 
         echo -e "Brief Description
+        ZapPluginManager -
         Complete - Adds OhmyZsh and zsh-user plugins manually, theming, tweaks and aliases
         NonTheme Complete (NT) - SAME as complete, expect NO THEMING
         Medium - Adds theming, tweaks and aliases
         Slim - Adds tweaks and aliases
 
-\vDo you want the Slim, Medium or Complete setup?
+\vDo you want the Slim, Medium or Complete setup or do you want to install the Zap Plugin Manager?
         "
-        read -rp "(s/m/nt/c)" setupTypeSelection
+        read -rp "(z/s/m/nt/c)" setupTypeSelection
 
     case $setupTypeSelection in
 
@@ -47,14 +48,16 @@ function selectSetupType() {
                 metaAliasAndOthers
                 ;;
 
-         [tT])  clear
+        [tT])  clear
                 ohmyzshPlugins
                 #zshUserPlugins && zshPluginAutoComplete && coloredManPages && userPrompt
                 #themeChooser
                 #metaAliasAndOthers
                 ;;
-        
-        *) echo -e "invalid selection" && sleep 1 && selectSetupType ;; 
+
+        [zZ]) installZapPluginManager ;;
+
+        *) echo -e "invalid selection" && sleep 1 && selectSetupType ;;
 
     esac
 
